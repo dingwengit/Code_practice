@@ -5,7 +5,9 @@ import java.lang.Integer;
 import java.util.Collection;
 
 public class RodCutting {
-    // price per length
+    // Given price per length, write a function to return max sum of price for the rod (len = price.length)
+    // for example, the rod with length 8 below -- you can sell the rod with 4 len 1, 2 len 2;
+    // or sell the rod as a whole of len 8
     private int[] price = {1, 5, 4, 6, 7, 9, 12, 11};
 
     // get max price you can sell for the whole rod, rod length is price.size()-1

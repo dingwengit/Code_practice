@@ -35,7 +35,7 @@ class RodCutting {
     }
 
 
-    private void TestRodCut(){
+    protected void TestRodCut(){
         System.out.println("Max price sold with recursive is " + MaxPrice(price, price.length));
         System.out.println("Max price sold with array is " + MaxPrice(price));
     }

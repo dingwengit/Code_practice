@@ -1,10 +1,7 @@
-/**
- * Created by wding on 2/11/17.
- */
 import java.lang.Integer;
 import java.util.Collection;
 
-public class RodCutting {
+class RodCutting {
     // Given price per length, write a function to return max sum of price for the rod (len = price.length)
     // for example, the rod with length 8 below -- you can sell the rod with 4 len 1, 2 len 2;
     // or sell the rod as a whole of len 8
@@ -24,6 +21,7 @@ public class RodCutting {
         return p;
     }
 
+    // this solution is much better for performance, it requires an array to store the best price for each len, up to n
     private int MaxPrice(int[] price){
         int[] mp = new int[price.length+1]; // mp[0] should be 0, so we need one more element
         for(int i=1;i<=price.length;i++){
@@ -37,7 +35,7 @@ public class RodCutting {
     }
 
 
-    public void TestRodCut(){
+    private void TestRodCut(){
         System.out.println("Max price sold with recursive is " + MaxPrice(price, price.length));
         System.out.println("Max price sold with array is " + MaxPrice(price));
     }

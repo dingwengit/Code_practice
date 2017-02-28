@@ -5,8 +5,8 @@ import java.util.ArrayList;
  */
 public class SearchForWords {
 
-    /*
-    Question : given the matrix below, start from any point to traverse each element once,
+    /* === problem ===
+    given the matrix below, start from any point to traverse each element once,
     add all characters of the path to form a string, if the string is in a predefined dictionary,
     print out the word.
     */

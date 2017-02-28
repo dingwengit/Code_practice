@@ -3,9 +3,9 @@ public class Main {
         new StringCutting().test();
         //new SearchForWords().test();
         //new RodCutting().TestRodCut();
-        //TreeBalance.TestTreeBalance();
+        //new TreeBalance().TestTreeBalance();
         //MatrixFind.test();
-        //GetChange.TestGetChange();
+        //new GetChange().TestGetChange();
         //new NSquareQueen().PlaceQueen(8);
     }
 }

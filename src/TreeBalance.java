@@ -5,7 +5,12 @@
 // use post-order tranverse to deteck sub-tree first, if sub-tree is not balanced, we stop here.
 // It will save a lot of iterations
 public class TreeBalance {
-    private static int IsTreeBalanced(Tree r) {
+    private class Tree {
+        public Tree(int n){v=n; left=null;right=null;}
+        public int v;
+        public Tree left, right;
+    }
+    private int IsTreeBalanced(Tree r) {
         if(r==null){
             return 0; // null tree is balanced
         }
@@ -20,7 +25,7 @@ public class TreeBalance {
         return 1 + Math.max(lh, rh);
     }
 
-    public static void TestTreeBalance(){
+    public void TestTreeBalance(){
         Tree r = new Tree(1);
         r.left = new Tree(2);
         r.right = new Tree(4);

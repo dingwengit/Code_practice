@@ -2,10 +2,28 @@
  * Created by wding on 12/9/16.
  */
 public class GetChange {
-    //Given an infinite number of quarters (25 cents), dimes (10 cents), nickels (5 cents) and pennies (1 cent),
+    // === problem ===
+    // Given an infinite number of quarters (25 cents), dimes (10 cents), nickels (5 cents) and pennies (1 cent),
     // write code to calculate the number of ways of representing n cents.
     // Noted problem : in this method, n=10, "1,1,1,1,1,5" will be different than "5,1,1,1,1,1", and "1,5,1,1,1,1", ....
-    public static void GetChange(int n, int sum, int coin, myInt ways){
+
+    private class myInt {
+        private int v;
+
+        public int GetValue() {
+            return v;
+        }
+
+        public void SetValue(int a) {
+            v = a;
+        }
+
+        public myInt(int a) {
+            v = a;
+        }
+    }
+
+    public void GetChange(int n, int sum, int coin, myInt ways){
         if(n<=0 || n < sum){
             return;
         }
@@ -30,7 +48,7 @@ public class GetChange {
             GetChange(n, sum+1, 1, ways);
         }
     }
-    public static void TestGetChange(){
+    public void TestGetChange(){
         myInt ways = new myInt(0);
         // let's try quarters first
         GetChange(30, 0, 25, ways);

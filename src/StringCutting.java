@@ -28,7 +28,8 @@ public class StringCutting {
         int minVal = Integer.MAX_VALUE;
         for(int i=st+1; i<end; i++){
             int leftHalfLen = cuttingPoints[i]-cuttingPoints[st];
-            minVal = Math.min(minVal, strLen + CutString(cuttingPoints, st, i, leftHalfLen) + CutString(cuttingPoints, i, end, strLen - leftHalfLen));
+            int rightHalfLen = strLen - leftHalfLen;
+            minVal = Math.min(minVal, strLen + CutString(cuttingPoints, st, i, leftHalfLen) + CutString(cuttingPoints, i, end, rightHalfLen));
         }
         return minVal;
     }

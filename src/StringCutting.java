@@ -27,9 +27,10 @@ public class StringCutting {
         // dynamic programming
         int minVal = Integer.MAX_VALUE;
         for(int i=st+1; i<end; i++){
-            int leftHalfLen = cuttingPoints[i]-cuttingPoints[st];
-            int rightHalfLen = strLen - leftHalfLen;
-            minVal = Math.min(minVal, strLen + CutString(cuttingPoints, st, i, leftHalfLen) + CutString(cuttingPoints, i, end, rightHalfLen));
+            // if we cut the string at position i, the min cost is current len + min_cost of left half + min_cost of right half
+            int l = cuttingPoints[i]-cuttingPoints[st]; // left half length
+            int r = strLen - l; // right half length
+            minVal = Math.min(minVal, strLen + CutString(cuttingPoints, st, i, l) + CutString(cuttingPoints, i, end, r));
         }
         return minVal;
     }

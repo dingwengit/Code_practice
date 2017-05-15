@@ -1,8 +1,10 @@
 /**
  * Created by wding on 2/9/17.
  */
-
-// use post-order tranverse to deteck sub-tree first, if sub-tree is not balanced, we stop here.
+// there are 2 methods to detect whether a tree is a balanced tree
+// method 1: top down search tree from root, if the depth difference between left tree and right tree is bigger than 1
+//           then it is not balanced; otherwise move to left and right child
+// method 2: use post-order tranverse to deteck sub-tree first, if sub-tree is not balanced, we stop here.
 // It will save a lot of iterations
 public class TreeBalance {
     private class Tree {

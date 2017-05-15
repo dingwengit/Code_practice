@@ -5,6 +5,8 @@
 // 10   12  14  16
 // 18   20  22  24
 // 26   28  30  32
+
+// == given a matrix nxn, sorted by roww and columns, search for an input integer ==
 public class MatrixFind {
     private static boolean FindElementRow(int[] a, int st, int end, int val){
         if(st>end){

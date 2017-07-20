@@ -34,15 +34,14 @@ public class StringCutting {
         }
         return minVal;
     }
-
     public void test(){
         int strLen = 20; // this is the string length
-        int[] cuttingPoints = {2, 7, 9}; // cutting points
+        int[] cuttingPoints = {2, 5, 9}; // cutting points
 
         int[] extendedCuttingPoints = new int[cuttingPoints.length + 2];
-        for(int i=0;i<cuttingPoints.length;i++){ // Note : added 0 to the start and end --> {0,2,7,9,0}
+        for(int i=0;i<cuttingPoints.length;i++){ // Note : added 0 to the start and end --> {0,2,5,9,0}
             extendedCuttingPoints[i+1] = cuttingPoints[i];
         }
-        System.out.println("The min cutting cost is " + CutString(extendedCuttingPoints, 0, cuttingPoints.length - 1, strLen));
+        System.out.println("The min cutting cost is " + CutString(extendedCuttingPoints, 0, extendedCuttingPoints.length-1, strLen));
     }
 }

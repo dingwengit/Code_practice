@@ -12,6 +12,30 @@ public class TreeBalance {
         public int v;
         public Tree left, right;
     }
+
+    private int GetTreeDepth(Tree r){
+        if(r==null){
+            return 0;
+        }
+        return 1 + Math.max(GetTreeDepth(r.left), GetTreeDepth(r.right));
+    }
+    //method 2
+    private boolean TestTreeBalanced(Tree r){
+        if(r==null){
+            return true;
+        }
+
+        int lh=GetTreeDepth(r.left);
+        int rh=GetTreeDepth(r.right);
+
+        if(Math.abs(lh-rh)>1){
+            return false;
+        } else {
+            return TestTreeBalanced(r.left) && TestTreeBalanced(r.right);
+        }
+    }
+
+    // method 1
     private int IsTreeBalanced(Tree r) {
         if(r==null){
             return 0; // null tree is balanced
@@ -21,7 +45,7 @@ public class TreeBalance {
         int rh = IsTreeBalanced(r.right);
 
         if(lh == -1 || rh == -1 || Math.abs(lh - rh) > 1){
-            return -1;
+            return -1; // return -1 is important
         }
 
         return 1 + Math.max(lh, rh);
@@ -32,8 +56,9 @@ public class TreeBalance {
         r.left = new Tree(2);
         r.right = new Tree(4);
         r.left.left = new Tree(3);
-        r.left.left.left = new Tree(5);
+        r.left.right = new Tree(5);
         boolean b = IsTreeBalanced(r) == -1? false: true;
-        System.out.println("Tree is balanced: " + b);
+        System.out.println("Tree is balanced (method 2): " + b);
+        System.out.println("Tree is balanced (method 1): " + TestTreeBalanced(r));
     }
 }

@@ -81,14 +81,22 @@ public class Main {
 //        return new MyGraph(v,e);
 //    }
     public static void main(String[] args) {
+//        new CountOnesOfInteger().Test();
+//        new HeapSort().Test();
+//        new QuickSort().Test();;
+//        new OptimalBinarySearchTree().Test();
+//        new StringPermutation().Test();
+//        new Longest_Palindrome_Substring().Test();
+//        new Longest_Palindrome_Subsequence().Test();
+//        new LettersForTelephoneNumbers().TestLettersForTelephoneNumbers();
 //        new Longest_Increasing_Integer_Sequence().test();
 //        new StringCombination().test();
-//        new StringCutting().test();
+        new StringCutting().test();
 //        new SearchForWords().test();
 //        new RodCutting().TestRodCut();
 //        new TreeBalance().TestTreeBalance();
 //        MatrixFind.test();
-          new GetCoinChange().TestGetCoinCombinations();
+//        new GetCoinChange().TestGetCoinCombinations();
 //        new NSquareQueen().PlaceQueen(8);
     }
 }

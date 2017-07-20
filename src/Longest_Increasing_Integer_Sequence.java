@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * Created by wding on 4/7/17.
  */
@@ -11,34 +13,32 @@
 
 public class Longest_Increasing_Integer_Sequence {
 
-    private void FindLongestSeq(int[] a, int[] c, int index){
-        if(index >= a.length){
-            return;
-        }
-
-        int num = 1; // initial value
-        for(int i=0;i<index;i++){
-            if(a[index] > a[i]){
-                num = Math.max(num, c[i] + 1);
+    private int FindLongestSeq(int[] a){
+        int[] c = new int[a.length];
+        int max = 0;
+        for(int p=0; p<a.length;p++){
+            int num = 1; // initial value
+            for(int i=0;i<p;i++){
+                if(a[p] > a[i]){
+                    num = Math.max(num, c[i] + 1);
+                }
+            }
+            c[p] = num;
+            if(num > max){
+                max = num;
             }
         }
-        c[index] = num;
 
-        FindLongestSeq(a, c, index + 1);
-    }
+        System.out.println("Count array: " + Arrays.toString(c));
 
-    private int FindLongestIncreasingSeq(int[] a){
-        int[] c = new int[a.length];
-
-        FindLongestSeq(a, c, 0);
-
-        return c[c.length-1];
+        return max;
     }
 
     public void test(){
         int a[] = {3, 5, 17, 4, 8, 12, 9, 10};
+        //int a[] = {3, 5, 17, 4};
 
-        int len = FindLongestIncreasingSeq(a);
+        int len = FindLongestSeq(a);
         System.out.println("longest increasing sequence: " + len);
     }
 }

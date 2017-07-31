@@ -35,7 +35,7 @@ public class TreeBalance {
         }
     }
 
-    // method 1
+    // method 1 - post-order tranverse
     private int IsTreeBalanced(Tree r) {
         if(r==null){
             return 0; // null tree is balanced

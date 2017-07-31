@@ -5,6 +5,10 @@ public class CountOnesOfInteger {
 
     private int CountOnes(int a){
         int cnt=0;
+        if(a<0){
+            a*=-1;
+            cnt=1;
+        }
         while(a!=0){
             cnt += a&1;
             a >>=1;
@@ -14,6 +18,10 @@ public class CountOnesOfInteger {
 
     private int CountOnes2(int a){
         int cnt=0;
+        if(a<0){
+            a*=-1;
+            cnt=1;
+        }
         while(a!=0){
             int c = a & ~(a-1);
             cnt++;
@@ -23,7 +31,7 @@ public class CountOnesOfInteger {
     }
 
     public void Test(){
-        System.out.println(CountOnes(15));
+        System.out.println(CountOnes(-15));
         System.out.println(CountOnes2(15));
     }
 }

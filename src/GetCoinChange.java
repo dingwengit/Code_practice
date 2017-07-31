@@ -62,7 +62,7 @@ public class GetCoinChange {
     // Assume coinValue = {25, 10, 5, 1}, output array is the count of each coin, for example
     // out = {2, 1, 0, 0} is 2X35 + 10 = 60 cents
     // Given a number x, print out or return all the coin combinations
-    public void GetCombinations(int n, int sum, int coin, int[] ways){
+    private void GetCombinations(int n, int sum, int coin, int[] ways){
         if(n<=0 || n < sum){
             return;
         }
@@ -95,7 +95,7 @@ public class GetCoinChange {
         }
     }
 
-    public void TestGetCoinCombinations(){
+    public void Test(){
         int[] ways = new int[4];
         GetCombinations(30, 0, 25, ways);
     }

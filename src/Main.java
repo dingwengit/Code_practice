@@ -81,6 +81,9 @@ public class Main {
 //        return new MyGraph(v,e);
 //    }
     public static void main(String[] args) {
+        new SortedLinkedList2BinarySearchTree().Test();
+//        new CountIntegerInversions().Test();
+//        new SerializeTree().Test();
 //        new CountOnesOfInteger().Test();
 //        new HeapSort().Test();
 //        new QuickSort().Test();;
@@ -91,12 +94,12 @@ public class Main {
 //        new LettersForTelephoneNumbers().TestLettersForTelephoneNumbers();
 //        new Longest_Increasing_Integer_Sequence().test();
 //        new StringCombination().test();
-        new StringCutting().test();
+//        new StringCutting().test();
 //        new SearchForWords().test();
 //        new RodCutting().TestRodCut();
 //        new TreeBalance().TestTreeBalance();
 //        MatrixFind.test();
-//        new GetCoinChange().TestGetCoinCombinations();
+//        new GetCoinChange().Test();
 //        new NSquareQueen().PlaceQueen(8);
     }
 }

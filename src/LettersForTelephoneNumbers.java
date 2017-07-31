@@ -23,21 +23,23 @@ public class LettersForTelephoneNumbers {
         printLetters(a, 0, out, 0);
     }
 
-    private void printLetters(int[] a, int p1, char[] out, int p2){
-        if(p1 >= a.length){
+    // pin: current position for input string
+    // pout: current position for output string
+    private void printLetters(int[] a, int pin, char[] out, int pout){
+        if(pin >= a.length){
             String s = new String(out);
-            System.out.println(s.substring(0, p2));
+            System.out.println(s.substring(0, pout));
             return;
         }
 
         int i=0;
-        for(;i<map[a[p1]].length;i++){
-            out[p2]= map[a[p1]][i];
-            printLetters(a, p1+1, out, p2+1);
+        for(;i<map[a[pin]].length;i++){
+            out[pout]= map[a[pin]][i];
+            printLetters(a, pin+1, out, pout+1);
         }
-        // special case for 0 and 1, when there is no mapping letters
+        // special case for 0 and 1, when there is no mapping letters, we don't increase the position of output string
         if(i==0){
-            printLetters(a, p1+1, out, p2);
+            printLetters(a, pin+1, out, pout);
         }
     }
 }

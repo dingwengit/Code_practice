@@ -4,8 +4,8 @@ import java.util.Arrays;
  * Created by wding on 6/6/17.
  */
 //=== problem ===
-// How do we organize a binary search tree so as to minimize the number of nodes visited in all searches, given that we know
-// the probability that each word occurs
+// How do we organize a binary search tree so as to minimize the number of nodes visited in all searches,
+// given that we know the probability that each word occurs
 // given n keys, let p[n] be the probability of each word occurs, and q[n+1] be the probability of each dummy key (unsuccessfully
 // found a key)
 // for given 1<=i<=j<=n, we assign key r as root, cost[i,j]=cost[i, r-1] + e[r+1,j] + w[i,j]

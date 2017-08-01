@@ -81,7 +81,9 @@ public class Main {
 //        return new MyGraph(v,e);
 //    }
     public static void main(String[] args) {
-        new MaxRectangleOfBarchart().Test();
+        new SquareRootforDouble().Test();
+//        new TwoIntegerSum().Test();
+//        new MaxRectangleOfBarchart().Test();
 //        new SortedLinkedList2BinarySearchTree().Test();
 //        new CountIntegerInversions().Test();
 //        new SerializeTree().Test();

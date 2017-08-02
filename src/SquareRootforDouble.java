@@ -7,12 +7,10 @@ public class SquareRootforDouble {
     private double sqrt(double d, double min, double max){
         double s = (min + max)/2;
         double e=0.001; // error range
-        if(s*s-d < -e){
-            return sqrt(d, s, max);
-        } else if(s*s - d < e){
+        if(Math.abs(s*s-d) > e){
+            return s*s-d<0? sqrt(d, s, max):sqrt(d, min, s);
+        } else {
             return s;
-        } else{
-            return sqrt(d, min, s);
         }
     }
 

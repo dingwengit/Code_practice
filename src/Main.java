@@ -81,7 +81,8 @@ public class Main {
 //        return new MyGraph(v,e);
 //    }
     public static void main(String[] args) {
-        new SquareRootforDouble().Test();
+        new MedianOfTwoSortedArrays().Test();
+//        new SquareRootforDouble().Test();
 //        new TwoIntegerSum().Test();
 //        new MaxRectangleOfBarchart().Test();
 //        new SortedLinkedList2BinarySearchTree().Test();

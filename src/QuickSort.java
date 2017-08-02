@@ -20,13 +20,14 @@ public class QuickSort {
             }
         }
 
-        // now swap value with pv if it is smaller than pv
+        // start from idx to end, now swap the value with a[idx] if it is smaller than pv
         for(int i=idx;i<end;i++){
             if(a[i]<pv){
                 swap(a, i, idx);
                 idx++;
             }
         }
+        // swap back the pivot value
         swap(a, idx, end-1);
 
         return idx;
@@ -44,7 +45,7 @@ public class QuickSort {
         }
         int idx = partition(a, st, end);
         quickSort(a, st, idx-1);
-        quickSort(a, idx+1, end);
+        quickSort(a, idx+1, end); // note that we need use idx+1 to skip idx
     }
 
     public void Test(){

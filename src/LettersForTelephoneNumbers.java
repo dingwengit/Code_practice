@@ -17,7 +17,7 @@ public class LettersForTelephoneNumbers {
         };
 
     public void TestLettersForTelephoneNumbers(){
-        int[] a= {4, 2, 5, 8, 9, 4, 0,0,4,8};
+        int[] a= {4, 0, 2};
         char[] out = new char[a.length];
 
         printLetters(a, 0, out, 0);

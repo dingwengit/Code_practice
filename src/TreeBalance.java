@@ -7,12 +7,6 @@
 // method 2: use post-order tranverse to deteck sub-tree first, if sub-tree is not balanced, we stop here.
 // It will save a lot of iterations
 public class TreeBalance {
-    private class Tree {
-        public Tree(int n){v=n; left=null;right=null;}
-        public int v;
-        public Tree left, right;
-    }
-
     private int GetTreeDepth(Tree r){
         if(r==null){
             return 0;

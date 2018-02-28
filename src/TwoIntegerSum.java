@@ -6,7 +6,7 @@ import java.util.HashMap;
 //=== question: give an array of integers and a sum n, write a function to check if there are 2 integers in the array
 //              can sum to n
 public class TwoIntegerSum {
-    private boolean CheckTwoIntegerSum(int[]a, int n) {
+    private boolean CheckTwoIntegerSum(int[]a, int sum) {
         HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
         for (int i : a) {
             if (map.containsKey(i)) {
@@ -16,8 +16,9 @@ public class TwoIntegerSum {
             }
         }
         for (int i : a) {
-            if (map.containsKey(n-i)) {
-                if(n-i == i && map.get(i)<=1){
+            if (map.containsKey(sum-i)) {
+                // if the sum = 2 * i, we need to make sure there are at least 2 i(s)
+                if(sum-i == i && map.get(i)<=1){
                     continue;
                 }
                 return true;

@@ -31,7 +31,7 @@ public class Longest_Palindrome_Subsequence {
         return Math.max(GetLengthOfLPS(a, i, j-1), GetLengthOfLPS(a, i+1, j));
     }
 
-    //== use a table to store the intermidate results, to avoid duplicate computations of sub-problems
+    //== use a table to store the intermediate results, to avoid duplicate computations of sub-problems
     private int GetLengthOfLPS2(char[] a){
         int[][] r = new int[a.length][a.length];
         int i,j;
@@ -69,7 +69,7 @@ public class Longest_Palindrome_Subsequence {
     private void GetLengthOfLPS3(char[] a, int st, int pos, char[] out, outLen ol){
         for(int i=st;i<a.length;i++){
             out[pos]=a[i];
-            int l = CheckPalindrome(out, pos);
+            int l = CheckPalindrome(out, pos+1);
             if (l > ol.getLen()){
                 ol.setLen(l);
             }
@@ -91,7 +91,7 @@ public class Longest_Palindrome_Subsequence {
     }
 
     public void Test(){
-        String a= "character";
+        String a= "characterc ";
         char[] out = new char[a.length()];
         outLen ol = new outLen();
 

@@ -28,7 +28,7 @@ public class HeapSort {
     }
     private void PerfHeapSort(int[] a){
         for(int i=0;i<a.length;i++){
-            Heapify(a, (a.length-i)/2, a.length-i);
+            Heapify(a, (a.length-i)/2, a.length-i);  //important to start from middle: len/2-1 back to index 0
             swap(a, 0, a.length-i-1);
         }
     }

@@ -30,7 +30,7 @@ public class Longest_Palindrome_Substring {
                         maxLen = j - i + 1;
                     }
                 }
-                else{ // otherwise, there is a palindrome between i, j
+                else{ // otherwise, there is no palindrome between i, j
                     c[i][j]=false;
                 }
             }
@@ -41,8 +41,23 @@ public class Longest_Palindrome_Substring {
         System.out.println(s.substring(start, start+maxLen));
     }
 
+    // recursive
+    private void GetLPSubStr2(char[] a, boolean [][] c, int i, int j, int maxLen){
+        if(i==j){
+            return;
+        }
+        if (a[i] == a[j]){
+            if (c[i+1][j-1]){
+                c[i][j]=true;
+                if(maxLen < j-i+1){
+                    maxLen = j-i+1;
+                }
+            }
+        }
+    }
     public void Test(){
-        String s="hcaracrctcra";
+//        String s="hcaracrctcra";
+        String s="character";
 
         GetLPSubStr(s.toCharArray());
     }

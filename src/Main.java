@@ -81,7 +81,7 @@ public class Main {
 //        return new MyGraph(v,e);
 //    }
     public static void main(String[] args) {
-        new ReverseLinkedlist().Test();
+//        new ReverseLinkedlist().Test();
 //        new LowestCommonAncestorOfBinaryTree().Test();
 //        new SinkZerosBinaryTree().Test();
 //        new SubsetSum().Test();
@@ -97,7 +97,7 @@ public class Main {
 //        new QuickSort().Test();;
 //        new OptimalBinarySearchTree().Test();
 //        new StringPermutation().Test();
-//        new Longest_Palindrome_Substring().Test();
+       new Longest_Palindrome_Substring().Test();
 //        new Longest_Palindrome_Subsequence().Test();
 //        new LettersForTelephoneNumbers().TestLettersForTelephoneNumbers();
 //        new Longest_Increasing_Integer_Sequence().test();

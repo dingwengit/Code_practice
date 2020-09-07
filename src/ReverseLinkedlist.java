@@ -24,5 +24,10 @@ public class ReverseLinkedlist {
         head.next.next.next.next=new SingledLinkedlist(5);
 
         SingledLinkedlist newhead = Reverse(head);
+        do
+        {
+            System.out.print(newhead.val + "->");
+            newhead = newhead.next;
+        }while(newhead != null);
     }
 }

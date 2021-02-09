@@ -2,7 +2,7 @@
  * Created by wding on 7/29/17.
  */
 // == questions: give an integer array A, an inversion means a[i]<a[j] when i>j, write a function
-//               to count total inversions in the array
+//              to count total inversions in the array
 public class CountIntegerInversions {
     private int CountInversions(int[] a, int i, int j){
         // divide and conquer

@@ -2,6 +2,10 @@
 # write a function to find out the longest living year with the most people
 
 people = [(1960, 2010), (1930, 2000), (1990, 2020), (1970, 2018)]
+# |-----|
+# |-----|
+#       |-----|
+#             |-----|
 
 
 def find_longest_live_year(people):

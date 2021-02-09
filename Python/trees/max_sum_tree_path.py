@@ -9,15 +9,9 @@
        8  20 2  11
 """
 import sys
+from tree import node
 
 path_max = -1 * sys.maxint
-
-
-class node:
-    def __init__(self, val):
-        self.left = None
-        self.right = None
-        self.val = val
 
 
 def find_max_path_sum(n):
@@ -27,20 +21,15 @@ def find_max_path_sum(n):
 
     l_sum = find_max_path_sum(n.left)
     r_sum = find_max_path_sum(n.right)
+    #l_sum or r_sum could be negative
+    l_max = max(l_sum + n.val, n.val)
+    r_max = max(r_sum + n.val, n.val)
+    path_max = max(path_max, max(n.val, n.val + l_sum + r_sum), l_max, r_max)
 
-    if n.val + l_sum + r_sum > path_max:
-        path_max = n.val + l_sum + r_sum
-
-    return max(max(l_sum + n.val, n.val), max(r_sum + n.val, n.val))
+    return max(l_max, r_max)
 
 
-root = node(5)
-root.left = node(-4)
-root.left.left = node(8)
-root.left.right = node(20)
-root.right = node(-3)
-root.right.left = node(2)
-root.right.right = node(11)
+root = node().get_one_tree()
 find_max_path_sum(root)
 print path_max
 

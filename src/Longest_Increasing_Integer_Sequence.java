@@ -10,7 +10,7 @@ import java.util.Arrays;
 // method : start from the first int, for each element of already searched array: a(0), a(1), ..., a(n),
 // store the longest increasing sequence number in c(0), c(1), ..., c(n)
 // for the next int a(n+1), c(n+1) is the max number of comparing a(n+1) to a(i) of existing subarray
-//     3, -5, 4, 1, 5, 1, 3, 10
+//     3, -5, 4, 1, 5, 1, 3, 10
 //c[]  1, 1,  2, 2, 3, 2, 3, 4
 //max. 1, 1,  2, 2, 3, 3, 3, 4
 

@@ -6,6 +6,6 @@ set -ex
 virtualenv venv
 source venv/bin/activate
 
-pip install -U nose
+pip3 install -U nose
 
 nosetests -v tests/

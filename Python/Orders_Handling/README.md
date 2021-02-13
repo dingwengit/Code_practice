@@ -21,14 +21,17 @@ To run the program
 # Design & Development
 * Overall design
   * There are 4 types of threads -- 1 main thread creates 1 order_processing thread, 1 cleanup thread and n pickup_processing threads
-  * Shelves - normal temperature shelves and 1 overflow shelf, each shelf will have its own thread Lock
+  * Shelves
+    * normal temperature shelves and 1 overflow shelf
+    * each shelf will have its own thread Lock
+    * orders are stored in hash map with key as order_id, value as order object
   * overflow handling
       * for a given order, if the desired temperate shelf is at capacity, check overflow shelf
-      * if overflow shelf is at capacity, then loop through all order in overflow shelf and find out if there are available capacity for any order, then there 2 cases
+      * if overflow shelf is at capacity, then loop through all the orders in overflow shelf and find out if there are available capacity for any order, then there 2 cases
       * 1st case is that no other shelves have capacity, then randomly dispose an order as waste from overflow shelf, and add the order to overflow shelf  
       * 2nd case is that if a shelf (A) is available, we want to move the order from overflow shelf to shelf A, here we choose first add the order to Shelf A, then remove it from overflow shelf
       * in race condition, because shelf's thread lock is for its own shelf, during the above move, this order could be picked up from overflow shelf (by the pickup thread) before being removed from overflow shelf, which results in an orphan order in shelf A
-      * the solution is to check order state, and to mark order state picked_up after the order is picked up, so the orphan order will be cleaned up from the shelf based on this state
+      * the solution is to check order state, and to mark order state as picked_up after the order is picked up, so the orphan order will be cleaned up from the shelf based on this state
   * order state
       * there are 3 states for each order - received, picked up, wasted
   * cleanup thread
@@ -38,8 +41,9 @@ To run the program
         Clean up thread could improve shelf's efficiency by timely removing orders with 0 value to increase capacity
   * pickup_queue
       * after order is received, the order will be put into pickup_queue
+      * orders are stored in a queue
       * pick up thread will process the queue in FIFO manner to pick up the order
-      * order can only be picked up randomly between 2 - 6 seconds after received
+      * an order can only be picked up between 2 - 6 seconds (randomly) after received
   * For pickup_thread and cleanup_thread, the thread delay time can be changed in the file
 
 # Unit Test

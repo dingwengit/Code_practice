@@ -84,7 +84,7 @@ class KitchenThreadTest(OrderTestCase):
         # now the 'frozen' order will be moved from overflow shelf into
         # 'frozen' shelf and overflow shelf still at its capacity
         new_temperature = 'frozen'
-        this_order = shelf_overflow.orders.values()[0]
+        this_order = list(shelf_overflow.orders.values())[0]
         this_order.temperature = new_temperature
         shelf_frozen = self.shelves[new_temperature]
         self.assertEqual(0, len(shelf_frozen.orders))
@@ -98,7 +98,7 @@ class KitchenThreadTest(OrderTestCase):
         )
         self.ordering_thread.run(dryrun=True)
         self.assertEqual(1, len(shelf_frozen.orders))
-        self.assertEqual(this_order, shelf_frozen.orders.values()[0])
+        self.assertEqual(this_order, list(shelf_frozen.orders.values())[0])
         self.assertEqual(OVERFLOW_CAPACITY, len(shelf_overflow.orders))
 
     def cleanup_thread_tests(self):
@@ -112,7 +112,7 @@ class KitchenThreadTest(OrderTestCase):
 
         # mark one onder's value as 0, and run clean up thread
         # the order should be marked as wasted, and remove from the shelf
-        this_order = shelf1.orders.values()[0]
+        this_order = list(shelf1.orders.values())[0]
         this_order.order_time -= 1000
         cleanup_thread.run(dryrun=True)
         self.assertEqual(ORDER_WASTED, this_order.order_state)

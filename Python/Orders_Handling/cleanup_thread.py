@@ -13,12 +13,15 @@ class CleanupThread(Thread):
     def __cleanup(self):
         removed = False
         for shelf in self.shelves.values():
-            if shelf.cleanup_orders():
+            removed_order = shelf.cleanup_orders()
+            if removed_order:
                 removed = True
         if removed:
             print(self.shelves)
 
-    def run(self):
+    def run(self, dryrun=False):
         while(not self.pickup_queue.end_pickup_thread()):
             self.__cleanup()
+            if dryrun:
+                break
             time.sleep(THREAD_DELAY_SECONDS)

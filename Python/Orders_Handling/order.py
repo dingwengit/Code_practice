@@ -11,6 +11,8 @@ SHELF_LIFE_RANGE = (1, 24 * 60 * 60)
 DECAY_RATE_RANGE = (0, 1)
 # valid range for decay modifier as (min, max)
 DECAY_MODIFIER_RANGE = (1, 100)
+# order state
+ORDER_RECEIVED, ORDER_PICKEDUP, ORDER_WASTED = "received", "pickedup", "wasted"
 
 
 class Order():
@@ -36,13 +38,13 @@ class Order():
         self.order_time = time.time()
         self.shelfDecayModifier = 1
         self.order_value = 1
-        self.picked_up = False
+        self.order_state = ORDER_RECEIVED
 
     def __repr__(self):
         return "id:{}, name:{}, temp:{}, shelfLife:{}, decayRate:{}, " \
-               "pickedup: {}, cur_value:{:.2f}"\
+               "state: {}, cur_value:{:.2f}"\
             .format(self.id, self.name, self.temperature, self.shelfLife,
-                    self.decayRate, self.picked_up, self.get_value())
+                    self.decayRate, self.order_state, self.get_value())
 
     @staticmethod
     def __check_range(value, range):

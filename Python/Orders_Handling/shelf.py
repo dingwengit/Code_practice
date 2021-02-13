@@ -1,7 +1,6 @@
 from threading import Lock
-from order import Order
 import random
-
+from order import ORDER_PICKEDUP, ORDER_WASTED
 
 CAPACITY = 10
 OVERFLOW_CAPACITY = 15
@@ -24,7 +23,7 @@ class Shelf():
             idx += 1
         return ''.join(ret)
 
-    def add_order(self, order: Order):
+    def add_order(self, order):
         with self.lock:
             assert order.id not in self.orders, \
                 "order id {} already exists on shelf {}"\
@@ -49,9 +48,12 @@ class Shelf():
                     print("< moved out order {} from shelf {}"\
                         .format(order, self.temperature))
                 else:
+                    order.order_state = ORDER_PICKEDUP
+                    # we need check value again
+                    if order.get_value() == 0:
+                        order.order_state = ORDER_WASTED
                     print("< picked up order {} from shelf {}" \
                           .format(order, self.temperature))
-                order.picked_up = True
                 return order
             return None
 
@@ -77,11 +79,15 @@ class Shelf():
         removed = False
         with self.lock:
             remove_orders = [order for order in self.orders.values() if
-                             order.get_value() == 0 or order.picked_up]
+                             order.get_value() == 0 or
+                             order.order_state == ORDER_PICKEDUP or
+                             order.order_state == ORDER_WASTED]
             for item in remove_orders:
-                print("< removed order {} from shelf {}"
+                print("< cleanup thread removed order {} from shelf {}"
                       .format(item, self.temperature))
                 del self.orders[item.id]
+                if item.get_value() == 0:
+                    item.order_state = ORDER_WASTED
                 removed = True
         return removed
 

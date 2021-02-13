@@ -13,7 +13,7 @@ class PickupQueue():
         # this is to coordinate threads exit
         self.no_more_orders = False
 
-    def add_order(self, order: Order):
+    def add_order(self, order):
         with self.lock:
             assert order not in self.queue, \
                 "order {} already exists in the pickup queue".format(order)
@@ -26,7 +26,8 @@ class PickupQueue():
                 # if it is ready to pick up
                 duration = int(time.time() - order.order_time)
                 if duration < PICKUP_TIME_RANGE_SECONDS[0]:
-                    # the first is not ready for pick up yet, skip the others
+                    # the first order is not ready for pick up yet, skip the
+                    # others
                     return None
                 if duration > randint(PICKUP_TIME_RANGE_SECONDS[0],
                                       PICKUP_TIME_RANGE_SECONDS[1]):

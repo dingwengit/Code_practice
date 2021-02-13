@@ -1,5 +1,5 @@
 from threading import Thread
-from order import Order, SUPPORTED_TEMPERATURES
+from order import Order, SUPPORTED_TEMPERATURES, ORDER_WASTED
 from shelf import OVERFLOW_SHELF_NAME
 import time
 
@@ -19,7 +19,7 @@ class OrderingThread(Thread):
                              .format(orders_per_second))
         self.delay = 1.0 / orders_per_second
 
-    def __process_order(self, order: Order):
+    def __process_order(self, order):
         shelf = self.shelves[order.temperature]
         overflow_shelf = self.shelves[OVERFLOW_SHELF_NAME]
         # 1. add to regular temp shelf
@@ -70,7 +70,8 @@ class OrderingThread(Thread):
             print(self.shelves)
         # 4. no available shelf found, let's dispose a random order
         else:
-            overflow_shelf.dispose_random_order()
+            waste_order = overflow_shelf.dispose_random_order()
+            waste_order.order_state = ORDER_WASTED
             print(self.shelves)
 
         if overflow_shelf.add_order(order):
@@ -82,11 +83,12 @@ class OrderingThread(Thread):
             raise Exception("order {} failed to be added "
                             "into overflow shelf".format(order))
 
-    def run(self):
+    def run(self, dryrun=False):
         while(self.orders):
             order = self.orders.pop(0)
             self.__process_order(Order(order['id'], order['name'],
                                        order['temp'], order['shelfLife'],
                                        order['decayRate']))
-            time.sleep(self.delay)
+            if not dryrun:
+                time.sleep(self.delay)
         self.pickup_queue.end_ordering()

@@ -2,11 +2,11 @@ import json
 from order_thread import OrderingThread
 from pickup_thread import PickupThread
 from cleanup_thread import CleanupThread
-from order import Order, SUPPORTED_TEMPERATURES
+from order import SUPPORTED_TEMPERATURES
 from shelf import Shelf, OVERFLOW_SHELF_NAME
 from pickup import PickupQueue
 
-PICKUP_THREADS = 1
+PICKUP_THREADS = 2
 
 
 class Kitchen():
@@ -21,7 +21,7 @@ class Kitchen():
             self.shelves[temp] = Shelf(temp)
         assert OVERFLOW_SHELF_NAME not in self.shelves, \
             "{} already exists in supported shelves {}"\
-                .format(OVERFLOW_SHELF_NAME, SUPPORTED_TEMPERATURES)
+            .format(OVERFLOW_SHELF_NAME, SUPPORTED_TEMPERATURES)
         self.shelves[OVERFLOW_SHELF_NAME] = Shelf(OVERFLOW_SHELF_NAME, True)
 
     @staticmethod

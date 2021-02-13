@@ -28,16 +28,19 @@ To run the program
       * 1st case is that no other shelves have capacity, then randomly dispose an order as waste from overflow shelf, and add the order to overflow shelf  
       * 2nd case is that if a shelf (A) is available, we want to move the order from overflow shelf to shelf A, here we choose first add the order to Shelf A, then remove it from overflow shelf
       * in race condition, because shelf's thread lock is for its own shelf, during the above move, this order could be picked up from overflow shelf (by the pickup thread) before being removed from overflow shelf, which results in an orphan order in shelf A
-      * the solution is to add a property for each order, and to mark order.picked_up = True after the order is picked up, so the orphan order will be cleaned up from the shelf based on this state
+      * the solution is to check order state, and to mark order state picked_up after the order is picked up, so the orphan order will be cleaned up from the shelf based on this state
+  * order state
+      * there are 3 states for each order - received, picked up, wasted
   * cleanup thread
       * The purpose of this thread is to loop through all shelves to remove 2 kinds of orders
         (1) orders with 0 value, (2) orphan orders with picked_up = True
-      * This strategy also improves shelf's efficiency by timely removing orders with 0 value to increase capacity
-  
-  
-* Shelf.py
-  
-* Order value
+      * without cleanup thread, an order with 0 value could stay on the shelf until pickup, which occupies shelf space.
+        Clean up thread could improve shelf's efficiency by timely removing orders with 0 value to increase capacity
+  * pickup_queue
+      * after order is received, the order will be put into pickup_queue
+      * pick up thread will process the queue in FIFO manner to pick up the order
+      * order can only be picked up randomly between 2 - 6 seconds after received
+  * For pickup_thread and cleanup_thread, the thread delay time can be changed in the file
 
 # Unit Test
 * Quick Test (by setting up virtualenv)

@@ -3,7 +3,7 @@
 
 def str_permutation(s, idx):
     if idx >= len(s):
-        print ''.join(s)
+        print(''.join(s))
     for i in range(idx, len(s)):
         if i != idx:
             s[idx], s[i] = s[i], s[idx]

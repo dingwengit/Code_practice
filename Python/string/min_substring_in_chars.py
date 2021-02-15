@@ -5,39 +5,43 @@
 
 # assumption: no other letters in the array
 
-def decrease_cnt(c, dic):
-    if c in dic:
-        dic[c] -= 1
-        if dic[c] == 0:
-            del dic[c]
-
-
-def increase_cnt(c, dic):
-    if c in dic:
-        dic[c] += 1
-    else:
-        dic[c] = 1
-
 
 def min_substr(arr, s):
-    sub_dict = dict()
+    sub_set = set()
+    res = None
+    min_len = len(s)
     i, j = 0, 0
     while j < len(s) and i < len(s):
-        # print("i:{} j:{} sub_dict: ()".format(i, j, sub_dict))
-        while i < len(s) - 1 and s[i] == s[i+1]:
-            decrease_cnt(s[i], sub_dict)
+        #print("i:{} j:{} sub_dict: ()".format(i, j, sub_set))
+        # first update start index i
+        while i < len(s) - 1 and (s[i] == s[i+1] or s[i] not in arr):
             i = i + 1
+        if s[i] not in sub_set and s[j] in arr:
+            sub_set.add(s[i])
         if i >= j:
             j = i
-            increase_cnt(s[i], sub_dict)
-        while len(sub_dict) < len(arr):
+        # now update end index j
+        while len(sub_set) < len(arr):
             j += 1
             if j >= len(s):
                 break
-            increase_cnt(s[j], sub_dict)
-        if len(sub_dict) == len(arr):
-            print(s[i:j+1])
-            decrease_cnt(s[i], sub_dict)
+            if s[j] not in sub_set and s[j] in arr:
+                sub_set.add(s[j])
+            elif s[j] in sub_set: # now need to remove s[j] from sub_set
+                while(s[i] != s[j]):
+                    if s[i] in sub_set:
+                        sub_set.remove(s[i])
+                    i += 1
+                i += 1
+                break
+        if len(sub_set) == len(arr):
+            if min_len > j + 1 - i:
+                min_len, res = j + 1 - i, s[i:j+1]
+                print("res:{}".format(s[i:j+1]))
+            if s[i] in sub_set:
+                sub_set.remove(s[i])
             i = i + 1
+    return res
 
-min_substr(['x','y','z'], "xyyzyyzzx")
+print(min_substr(['x','y','z'], "yyazxazxyczyyazzx"))
+

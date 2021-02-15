@@ -11,5 +11,7 @@ def permute(len, s):
                  for x in s
                  for y in permute(len-1, s)]
 
-print permute(1, ['a', 'b', 'c'])
-print permute(2, ['a', 'b', 'c'])
+
+print(permute(1, ['a', 'b', 'c']))
+print(permute(2, ['a', 'b', 'c']))
+

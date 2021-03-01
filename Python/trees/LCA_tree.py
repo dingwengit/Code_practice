@@ -1,7 +1,7 @@
 from tree import node
 
 
-# problem of this method is to return of the nodes if they are parent-child
+# problem of this method is to return one of the nodes if they are parent-child
 # relationship
 def LCA(root, n1, n2):
     if root is None:

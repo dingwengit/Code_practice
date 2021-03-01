@@ -2,11 +2,8 @@
 # input: 234.0045
 # output: "234.0045"
 
-
-
-def float_to_str(flt, k):
+def float_to_str(flt, k, res):
     # convert int to str
-    res = []
     a = int(flt)
     if a == 0:
         res.append("0")
@@ -28,7 +25,7 @@ def float_to_str(flt, k):
         flt2 -= d
         cnt += 1
     return "".join(res)
-
-# print(float_to_str(0.0056, 4))
+res = []
+print(float_to_str(0.0056, 4, res))
 
 

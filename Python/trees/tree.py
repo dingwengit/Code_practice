@@ -16,8 +16,8 @@ class node:
         def print_tree(root, tag):
             if root:
                 res.append("{}-{} ".format(tag, root.val))
-                print_tree(root.left, "lc")
-                print_tree(root.right, "rc")
+                print_tree(root.left, "{}-lc".format(root.val))
+                print_tree(root.right, "{}-rc".format(root.val))
         print_tree(self, "rt")
         return ''.join(res)
 

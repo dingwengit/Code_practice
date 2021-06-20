@@ -38,3 +38,14 @@ max_lps = ''
 find_LPS2(s, 0, 0, res)
 print(max_lps)
 #print(find_LPS(s, 0, len(s)-1))
+
+
+
+s="abc"
+"a"
+"b"
+"c"
+"ab"
+"ac"
+"bc"
+"abc"

@@ -14,7 +14,7 @@ phone_mapping = {
 def print_phone_letters(a, m, idx, res):
     if idx >= len(a):
         print ''.join(res)
-        return
+        returnw
 
     letters = m[a[idx]]
     if len(letters) > 0:

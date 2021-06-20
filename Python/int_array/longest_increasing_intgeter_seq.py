@@ -1,4 +1,4 @@
-# given an int array, e.g., 3, 5, 17, 4, 8, 12, 9, 10, find the longest
+w# given an int array, e.g., 3, 5, 17, 4, 8, 12, 9, 10, find the longest
 # increasing sequence (3, 4, 8, 9, 10)
 
 #  a =     3,  5,   17,   4,  8, 12, 9, 10
@@ -8,7 +8,7 @@
 # there could be multiple squence arrays (having the same result)
 # option 1 is to use another array to store the count per integer
 # option 2 is to use hash table to store the max count
-# c = {3:[3], 5:[3,5], 17:[3,5,17], 4:2, 8:3, 12:4, 9:4, 10:5}
+# c = {3:[3], 5:[3,5], 17:[3,5,17], 4:2, 8x:3, 12:4, 9:4, 10:5}
 
 import copy
 

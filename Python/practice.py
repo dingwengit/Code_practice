@@ -1,31 +1,32 @@
-# convert float into string (up to k decimal):
-# input: 234.0045
-# output: "234.0045"
+"""
+incoming events schema:
 
-def float_to_str(flt, k, res):
-    # convert int to str
-    a = int(flt)
-    if a == 0:
-        res.append("0")
-    while(a > 0):
-        d = a % 10
-        res.append("{}".format(d))
-        a = int(a / 10)
-        # print("d:{} a:{}".format(d, a))
-        # return
-    res = res[::-1]
-    res.append(".")
-    # convert decimal to str
-    cnt = 1
-    flt2 = flt - int(flt)
-    while (cnt <= k):
-        flt2 *= 10.0
-        d = int(flt2) % 10
-        res.append("{}".format(d))
-        flt2 -= d
-        cnt += 1
-    return "".join(res)
-res = []
-print(float_to_str(0.0056, 4, res))
+location_id, device_id, timestamp (epoch time), blocked_event_type, blocked_site
+loc_001,     dev_001,   572315765, ad,   googleanalytics.com
+loc_002,     dev_002,   572315767, kids, marijuana.com
+loc_003,     dev_003,   572315793, spam, nigerianprince.com
+----
+
+how to process S3 files -->
+(1) Kalfka data source --> Kalfka event
+(2) log reader --> monitor files --> process it
 
 
+1. calculate and display week over week cumulative counts by blocked_event_type
+
+      week 1,  week 2,   week 3, ...
+ad    38479,   52215,   98234,
+kids  2834,    6255,    8217
+
+2. output (daily, weekly)
+
+daily workflow --> input as stream
+
+day1.psv --> type, count_events
+day2.psv --> type, count_events
+day3.psv --> type, count_events
+
+(1) weekly workflow --> input as daily output files
+(2) SQL query
+(3) kafka events --> send out topics for daily count by type
+"""

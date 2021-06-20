@@ -63,3 +63,28 @@ class node:
         root.right.right.right = node(30)
         root.left.left.left = node(30)
         return root
+
+
+def traverse(root):
+    if not root:
+        return
+    traverse(root.left)
+    print(root.val)
+    traverse(root.right)
+
+"""
+           15
+         /    \
+        11    23
+        / \   / \
+       8  12 22  25
+"""
+# root = node(15)
+# root.left = node(11)
+# root.left.left = node(8)
+# root.left.right = node(12)
+# root.right = node(23)
+# root.right.left = node(22)
+# root.right.right = node(25)
+#
+# traverse(root)

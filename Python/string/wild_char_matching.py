@@ -12,7 +12,7 @@ def isMatch(str, s_idx,  p, p_idx):
     if not str and not p:
         return True
 
-    if p[p_idx] != '*':
+    if p[p_idx] != '*': # case 1
         if s_idx >= len(str) or p[p_idx] != str[s_idx]: # if end of str,
             # still have char in pattern with non-wild-char
             return False
@@ -21,9 +21,10 @@ def isMatch(str, s_idx,  p, p_idx):
         elif s_idx + 1 == len(str): # both str and pattern reached the end
             return True
         return False
-    elif p_idx + 1 == len(p): # the last char is '*' in pattern
+    elif p_idx + 1 == len(p): # case 2: the last char is '*' in pattern
         return True
-    else: # now we allow each char in str to take this place, and compare to
+    else: # case 3:
+        # now we allow each char in str to take this place, and compare to
         # next char in pattern, if any of them matches, we are good
         if s_idx == len(str): # if no more str, but has char in pattern
             return isMatch(str, s_idx, p, p_idx + 1)

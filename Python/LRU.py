@@ -27,8 +27,7 @@ class LRU:
     def read(self, key):
         # use key to find index in list
         # if index is not the latest, move to the end of list
-        self.lock.acquire()
-        try:
+        with self.lock:
             node = hash[key]
             if node == self.tail:
                 return node.data
@@ -43,18 +42,16 @@ class LRU:
             node.pv = self.tail
             node.nt = None
             self.tail = node
-        finally:
-            self.lock.release()
 
     def add(self, key, value):
-        # add k,v into ll
-        if self.size >= self.total_size:
-            self.remove_head()
-            self.size -= 1
-        else:
+        with self.lock:
+            # add k,v into ll
+            if self.size >= self.total_size:
+                self.remove_head()
+                self.size -= 1
             # add to the tail -- <- tail -> node
             node = DoubleLinkList(key=key, pv = self.tail, value=value)
             self.hash[key] = node
             self.tail.nt = node
             self.tail = node
-            self.size =+ 1
+            self.size += 1

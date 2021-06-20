@@ -3,13 +3,9 @@
 # a = [5, 2, 1, 4], invesions = 4
 
 def count_inversions(a):
-    cnt = 0
-    for i in range(len(a)):
-        for j in range(i+1, len(a)):
-            if a[i] > a[j]:
-                cnt += 1
-    return cnt
-
+    return sum(1 if a[i] > a[j] else 0 for i in range(len(a))
+                for j in range(i + 1, len(a)))
 
 a = [5, 2, 1, 4]
-print count_inversions(a)
+print(count_inversions(a))
+

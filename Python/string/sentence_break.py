@@ -19,7 +19,8 @@ def sentence_break(s, res):
             sentence_break(s[i:], res)
             del res[len(res) -1]
 
-def sentence_break2(s, idx, res):
+
+def sentence_break2(s, idx=0, res=[]):
     if idx >= len(s):
         print(res)
         return
@@ -32,5 +33,5 @@ def sentence_break2(s, idx, res):
 
 # sentence_break("onpinsandneedles",[])
 # sentence_break("onpinsan",[])
-sentence_break2("onpinsandneedles", 0, [])
+sentence_break2("onpinsandneedles")
 # sentence_break2("onpinsan", 0, [])

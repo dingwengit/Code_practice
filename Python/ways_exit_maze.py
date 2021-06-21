@@ -1,24 +1,30 @@
 # for a NxN maze, find out how many different ways to start from (0,
 # 0) to exit (N-1, N-1)
 
+
 def get_ways_exit_maze(x, y):
+    if x < 0 or y < 0:
+        return 0
+
     if x == 0 and y == 0:
         return 1
 
-    if x - 1 >= 0:
-        return 1 + get_ways_exit_maze(x-1, y)
+    # print(f"x={x}, y={y}")
 
-    if y - 1 >= 0:
-        return 1 + get_ways_exit_maze(x, y-1)
+    return get_ways_exit_maze(x - 1, y) + get_ways_exit_maze(x, y - 1)
 
 
-def get_ways_exit_maze2(x, y, n):
-    if x == n and y == n:
+# n x n
+def maze_traverse(n, i, j):
+    if i >= n or j >= n:
+        return 0
+
+    if i == n - 1 and j == n - 1:
         return 1
-    if x + 1 <= n:
-        return 1 + get_ways_exit_maze2(x+1, y, n)
-    if y + 1 <= n:
-        return 1 + get_ways_exit_maze2(x, y+1, n)
-print(get_ways_exit_maze(3, 3))
-print(get_ways_exit_maze2(0, 0, 3))
 
+    return maze_traverse(n, i + 1, j) + maze_traverse(n, i, j + 1)
+
+
+n = 2
+print(maze_traverse(n, 0, 0))
+print(get_ways_exit_maze(n - 1, n - 1))

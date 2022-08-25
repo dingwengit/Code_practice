@@ -22,7 +22,7 @@ def find_longest_live_year(people):
         if map[y] > max_people:
             max_people = map[y]
             lly = y
-    print "lly={}, max_people={}".format(lly, max_people)
+    print("lly={}, max_people={}".format(lly, max_people))
 
 
 find_longest_live_year(people)

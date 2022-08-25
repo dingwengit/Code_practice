@@ -11,6 +11,15 @@ input_blocks = [
 {"gym":True, "grocery_store":False, "office":False}
 ]
 Solution:
+Assumption: the following 2 cases has the same distance value as 1
+case 1
+{"gym":True, "grocery_store":False, "office":False}, <-- live here
+{"gym":False, "grocery_store":True, "office":True},
+case 2
+{"gym":False, "grocery_store":False, "office":True},
+{"gym":True, "grocery_store":False, "office":False},  <-- live here
+{"gym":False, "grocery_store":True, "office":False},
+
 block_idx: 0 -- 1 -- 2 -- 3 -- 4 -- 5
 search_range = min(len(blocks)-1, cur_min_distance)
 """
@@ -39,18 +48,18 @@ def check_attributes(blocks, s_idx, idx, att_tbl):
 
 
 def find_shortest_block(blocks, idx, cur_min):
-    sr = min(len(blocks)-1, cur_min)
     att_tbl = copy.deepcopy(blocks[idx])
-    for s_idx in range(sr+1):
+    for s_idx in range(cur_min+1):
         if check_attributes(blocks, s_idx, idx, att_tbl):
             return True, s_idx
-    return False, sr
+    return False, cur_min
+
 
 def find_shortest_blocks(blocks):
-    min_dist = sys.maxsize
+    min_dist = len(blocks)-1
     min_idx = sys.maxsize
     for idx in range(len(blocks)):
-        found, dist= find_shortest_block(blocks, idx, len(blocks)-1)
+        found, dist= find_shortest_block(blocks, idx, min_dist)
         if found and dist < min_dist:
             min_dist = dist
             min_idx = idx
@@ -58,8 +67,8 @@ def find_shortest_blocks(blocks):
 
 input_blocks = [
 {"gym":False, "grocery_store":True, "office":False},
-{"gym":False, "grocery_store":True, "office":False},
-{"gym":True, "grocery_store":False, "office":False},
+{"gym":False, "grocery_store":False, "office":False},
+{"gym":True, "grocery_store":False, "office":True},
 {"gym":True, "grocery_store":False, "office":True},
 {"gym":False, "grocery_store":False, "office":True},
 {"gym":True, "grocery_store":False, "office":False}

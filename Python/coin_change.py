@@ -7,14 +7,14 @@
 
 def coin_change(a, idx, n, res):
     if n == 0:
-        print res
+        print(res)
         return
 
     for i in range(len(a)):
         if i >= idx and a[i] <= n:
             res.append(a[i])
             coin_change(coins, i, n - a[i], res)
-            del res[len(res) - 1]
+            del res[len(res) - 1]  # back track
 
 
 coins = [25, 10, 5, 1]

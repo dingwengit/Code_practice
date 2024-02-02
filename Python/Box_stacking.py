@@ -18,7 +18,7 @@ def find_max_height(boxes, res):
 
 max_height = 0 # !!!! max height means the sum of height of all stacked boxes
 l, w, h = (6, 3, 5)
-boxes = [(6,3,5), [3,5,6], (6,5,3), (2,4,8), (8,4,2), (2,8,4)]
+boxes = [(6,3,5), (3,5,6), (6,5,3), (2,4,8), (8,4,2), (2,8,4)]
 for (l, w, h) in boxes:
     res = [(l, w, h)]
     find_max_height(boxes, res)

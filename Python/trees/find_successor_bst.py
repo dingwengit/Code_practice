@@ -1,11 +1,16 @@
 """
-           5
-         /    \
-        -4    -3
-        / \   / \
-       8  20 2  11
+             15
+         /       \
+        10       34
+        / \    /  \
+       8  11  32   41
+                   /
+                  35
 
 find successor for a given Node, in BST tree or in-order tranverse path
+
+input = 15
+output = 32
 
 """
 import tree
@@ -14,11 +19,10 @@ def find_successor(node):
     # case 1: if node has right child, the successor would the right tree's
     # most left node
     if node.right:
-        while node.right:
-            node = node.right
-            while node.left:
-                node = node.left
-        return node
+        cur = node.right
+        while cur.left:
+            cur = cur.left
+        return cur
 
     # case 2: node's sucessor is on parent path, while the parent's right
     # child is node

@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-from array import *
 import heapq
 
 # given a set of [start-time, end-time] booking of meeting rooms, write a
@@ -10,13 +9,12 @@ import heapq
 #   3: (2,4), (3,5)
 #   4: (3,5)
 
-# assume, the set is sorted by start-time
+# assumption: the set is sorted by start-time
 
 def max_rooms(t):
     max_rooms = 0
     slots = []
-    for slot in t:
-        st, end = slot[0], slot[1]
+    for st, end in t:
         # 1. start
         if len(slots) == 0:
             heapq.heappush(slots, (end, st)) # minheap by default -

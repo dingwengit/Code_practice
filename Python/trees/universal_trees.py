@@ -1,5 +1,14 @@
 # universal tree is a tree with equal count of left & right children (don't
 # check the values)
+"""
+           5
+         /    \
+        -4    -3
+        / \   / \
+       8  20 2  11
+output: 7
+"""
+
 from tree import node
 
 

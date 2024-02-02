@@ -4,9 +4,17 @@
 # start)
 # here end means the last position of array
 #           [2,3,1,1,2,4,2,0,1,1]
-# cursteps [ 0, 10,  10, 10,  10, 10,  10, 10,  10, 10]
+# cursteps [ 0,1,1,]
 # idx -> 2 [ 0, 1, 1, 10,  10, 10,  10, 10,  10, 10]
-import sys
+
+def get_min_jumps(a):
+    res = [0] * len(a)
+    for idx, steps in enumerate(a):
+        for j in range(1, steps+1):
+            cur_step = res[idx] + 1
+            if idx + j < len(a) and (cur_step < res[idx + j] or res[idx+j] == 0):
+                res[idx + j] = cur_step
+    return res[len(a) - 1]
 
 def jump(a, idx, cur_steps, steps):
     global min_steps
@@ -24,3 +32,4 @@ min_steps = len(a)
 steps = [len(a)] * len(a) # initialize to the max steps
 jump(a, 0, 0, steps)
 print ("min_steps = {}".format(min_steps))
+print ("min_steps = {}".format(get_min_jumps(a)))

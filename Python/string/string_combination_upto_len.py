@@ -1,11 +1,11 @@
 # give string "abc", print out its combinations
 # result: "a", "b", "c", "ab", "bc", "ac"
 
-def str_combinations(s, st, k, res):
+def str_combinations(s, res, st=0, idx=0):
     for i in range(st, len(s)):
-        res[k] = s[i]
-        print(''.join(res[:k+1]))
-        str_combinations(s, i+1, k+1, res)
+        res[idx] = s[i]
+        print(''.join(res[:idx+1]))
+        str_combinations(s, res, i+1, idx+1)
 
 
 def str_combinations_upto_len(s, st, idx, res, length):
@@ -39,7 +39,7 @@ def combination_with_len(n, s):
 
 s = "abc"
 res = [''] * len(s)
-str_combinations(s, 0, 0, res)
+str_combinations(s, res)
 s = "abcde"
 n = 4
 print("results for len={}".format(n))

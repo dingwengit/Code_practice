@@ -4,16 +4,17 @@
 # str2 = "cde
 
 def find_min_edit_dist(str1, idx1, str2, idx2):
-    if str1 is None and str2 is None:
+    if idx1 < 0 and idx2 < 0:
         return 0
     # one of the string has extra chars, let's insert
-    if idx1 < 0 or not str1:
+    if idx1 < 0:
         return idx2 + 1
-    if idx2 < 0 or not str2:
+    if idx2 < 0:
         return idx1 + 1
     if str1[idx1] == str2[idx2]:
         return find_min_edit_dist(str1, idx1-1, str2, idx2-1)
     else:
+        # replace, insert / delete on either 1st or 2nd str
         return min(find_min_edit_dist(str1, idx1-1, str2, idx2-1) + 1,
                    find_min_edit_dist(str1, idx1, str2, idx2-1) + 1,
                    find_min_edit_dist(str1, idx1-1, str2, idx2) + 1)

@@ -4,41 +4,17 @@
 # how many lc, rc?
 # hint : don't use arraylist as result, use idx and fixed size array
 
-def get_lc_rc(s):
-    lc, rc = 0, 0
-    for c in s:
-        if c == '(':
-            lc += 1
-        if c == ')':
-            rc += 1
-    return lc, rc
 
-def find_matched_p(n, idx, res):
-    if 2 * n <= idx:
-        print ''.join(res)
-        return
-    # print "idx: {} res: {}".format(idx, res)
-    lc, rc = get_lc_rc(res[:idx])
-    if lc < n:
+def find_matched_parenthesis(n, res, idx=0, lp=0, rp=0):
+    if idx >= 2 * n:
+        print(f"{''.join(res)}")
+
+    if lp < n:
         res[idx] = '('
-        find_matched_p(n, idx+1, res)
-    if rc < lc:
+        find_matched_parenthesis(n, res, idx+1, lp+1, rp)
+    if rp < lp:
         res[idx] = ')'
-        find_matched_p(n, idx+1, res)
+        find_matched_parenthesis(n, res, idx+1, lp, rp+1)
 
-
-def find_matched_p2(n, idx, lc, rc, res):
-    if 2 * n <= idx:
-        print ''.join(res)
-        return
-    if lc < n:
-        res[idx] = '('
-        find_matched_p2(n, idx+1, lc+1, rc,  res)
-    if rc < lc:
-        res[idx] = ')'
-        find_matched_p2(n, idx+1, lc, rc + 1, res)
-
-n = 3
-res = [' '] * (2 * n)
-find_matched_p2(n, 0, 0, 0, res)
-# find_matched_p(n, 0, res)
+res = [''] * (2 * n)
+find_matched_parenthesis(3, res)

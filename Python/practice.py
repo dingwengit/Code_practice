@@ -1,4 +1,8 @@
 """
+
+()a()(()()
+->
+
 incoming events schema:
 
 location_id, device_id, timestamp (epoch time), blocked_event_type, blocked_site

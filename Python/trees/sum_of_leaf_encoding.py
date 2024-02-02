@@ -3,9 +3,9 @@
           /    \
          0     0
         / \   / \
-       1  0  1  1
-root to leaf represent a binary format of integer (101) + (100) + (101) + (101)
-                    = 5 + 4 + 5 + 5
+       1  0  1  0
+root to leaf represent a binary format of integer (101) + (100) + (101) + (100)
+                    = 5 + 4 + 5 + 4
 """
 import tree
 

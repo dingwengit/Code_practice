@@ -22,6 +22,9 @@ case 2
 
 block_idx: 0 -- 1 -- 2 -- 3 -- 4 -- 5
 search_range = min(len(blocks)-1, cur_min_distance)
+
+Solution 2
+             (0, 1, 0), (1, 0, 0), (1, 0, 0), (0, 1, 1), (0, 0, 1), (1, 0, 0)
 """
 import copy
 import sys
@@ -75,3 +78,68 @@ input_blocks = [
 ]
 dist, idx = find_shortest_blocks(input_blocks)
 print(f"min_dist: {dist}, idx:{idx} - {input_blocks[idx]}" )
+
+# solution 2
+input_blocks = [
+[False, True, False],
+[False, False, False],
+[False, False, False],
+[False, False, False],
+[False, False, False],
+[True, False, True],
+[False, False, True],
+[True, False, False],
+[True, False, False],
+[False, True, False]
+]
+
+#
+# 1. copy new block into a var
+# 2. loop through item in a
+# 3. for item, if attr[i] in the new block is true, set item[i] to false
+# 4. for item, if item[i] is true, set var[i] to true
+# 5. if item has all attr as false, delete it from a
+# 6. add the new block into a
+# 7. if var has all attr as true, we found the solution,
+# 8. delete the first item in a, and continue
+#
+def add_block(blocks, idx, a):
+    block = copy.deepcopy(blocks[idx])
+    removes = []
+    for index, b in enumerate(a):
+        for i, v in enumerate(block):
+            if v and b[1][i]:
+                b[1][i] = False
+            if b[1][i]:
+                block[i] = True
+        if not any(b[1]):
+            removes.append(index)
+    for i in removes:
+        del a[i]
+    a.append((idx, blocks[idx]))
+    if all(block):
+        print(f"found solution -> a={a}")
+        return a[len(a)-1][0] - a[0][0], int((a[len(a)-1][0] + a[0][0]) / 2)
+    else:
+        print(f"a={a}")
+        return -1, -1
+
+
+def find_best_block(blocks):
+    a = []
+    min_blocks = len(blocks)
+    min_idx = 0
+    for idx, b in enumerate(blocks):
+        if all(b):
+            return 1, idx
+        n, found_idx = add_block(blocks, idx, a)
+        if n != -1:
+            if min_blocks > n:
+                min_blocks = n
+                min_idx = found_idx
+            del a[0] # now remove the first candidate
+    return min_blocks, min_idx
+
+
+n, idx = find_best_block(input_blocks)
+print(f"min_dist: {n} - idx:{idx} : {input_blocks[idx]}")

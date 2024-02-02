@@ -2,11 +2,12 @@
 from array import *
 
 # given two arrays of N length, find out the max sum of selecting elements
-# from the two arrays
+# from the two arrays -- how many elements?
 # ** with no same index and no continous positions in the same array **
 # a = [2, 3, 9, 11]
 # b = [5, 1, 8, 2]
 # max sum = 5 + 8 + 3 + 11
+# need more clarifications on this
 
 def max_sum_pair(a, b):
     c1 = [0] * len(a)

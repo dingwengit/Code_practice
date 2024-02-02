@@ -6,30 +6,27 @@
 # for a given digit array, find out how many ways you can decode it into
 # different strings
 
+# input = "22450"
+# invalid input: 0000, 11150, 0123
+# output: 2, 2, 4, 5 or 22, 4, 5 or 2, 24, 5
+
 cnt = 0
 
-map = {}
 
-def set_map(map):
-    for i in range(0, 26):
-       map[i + 1] = chr(ord('A') + i)
-
-def decode(str, pos, map):
+def find_decode_cnt(s, idx):
     global cnt
-    print "pos: {}, cnt:{}".format(pos, cnt)
-    if pos >= len(str):
+    if idx >= len(s):
+        cnt += 1
         return
-    if int(str[pos]) in map:
-        if pos == len(str) - 1 :
-            cnt += 1
-        decode(str, pos + 1, map)
-    if pos + 1 < len(str) and int(str[pos:pos+2]) in map:
-        if pos + 1 == len(str) - 1 :
-            cnt += 1
-        decode(str, pos + 2, map)
+    if int(s[idx]) > 0: # validation
+        find_decode_cnt(s, idx+1)
+    else:
+        return
+    if idx+2 <= len(s) and int(s[idx:idx+2]) <= 26 and int(s[idx:idx+2]) > 0: # validation
+        find_decode_cnt(s, idx + 2)
 
-str = "162"
-set_map(map)
-print map
-decode(str, 0, map)
-print cnt
+
+s = "20225"
+find_decode_cnt(s, 0)
+print(cnt)
+

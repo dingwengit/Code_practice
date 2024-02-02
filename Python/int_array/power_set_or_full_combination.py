@@ -5,7 +5,6 @@ def power_set(a, cur_res, st=0, k=0, ):
     for i in range(st, len(a)):
         cur_res[k] = a[i]
         print(cur_res[:k+1])
-        # res.append(copy.deepcopy(cur_res[:k+1]))
         power_set(a, cur_res, i+1, k+1)
 
 

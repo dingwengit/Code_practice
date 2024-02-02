@@ -1,4 +1,4 @@
-"""
+'''
 Complete a function that returns the smallest key(sorted in ascending order
 alphabetically) of the given input dictionary containing nth hgihest value
 dictionary: {'e': 1, 'b': 2, 'c': 100, 'd': 30, 'a': 30}, n : 2 (2nd highest
@@ -26,20 +26,26 @@ n=2
 
 input: dic, n
 output: char_key which hold the nth highest value
+'''
 
 import heapq
+
+
 def find_nth_highest(dic, n):
-  heap = []
+    heap = []
 
-   for k, v in dic:
-     if len(heap) < n:
-        heapq.push(heap, (v, k))
-     else:
-        if heap[0][0] == v:
-          if heap[0][1] > k:
-            heap[0][1] = k
+    for k, v in dic.items():
+        if len(heap) < n:
+            heapq.heappush(heap, (v, k))
         else:
-          heapq.pushpop(heap, (v,k))
-  return heap[0][1], heap[0][0]
+            if heap[0][0] == v:
+                if heap[0][1] > k:
+                    heap[0] = heap[0][0], k
+            else:
+                heapq.heappushpop(heap, (v,k))
+    return (heap[0][1], heap[0][0])
 
-"""
+
+dic = {'e': 1, 'b': 2, 'c': 100, 'd': 30, 'a': 30}
+
+print(find_nth_highest(dic, 2))

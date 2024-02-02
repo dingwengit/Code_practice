@@ -3,10 +3,7 @@ import threading
 
 class DoubleLinkList:
     def __init__(self, key, pv=None, nt=None, value=None):
-        self.key = key
-        self.pv = pv
-        self.nt = nt
-        self.data = value
+        self.key, self.pv, self.nt, self.data = key, pv, nt, value
 
 #
 # h <-> n1 <-> n2 <-> n3 <-> n4 <-> t

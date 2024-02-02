@@ -27,7 +27,7 @@ def find_number_in_row(arr, val, st, end):
 def find_number(a, val, row_st, row_end):
     if row_st > row_end or row_st < 0 or row_st >= len(a):
         return False
-
+    # 1 check mid row -- last element --> first element --> current row
     row_mid = (row_st + row_end) // 2
     # check if the value on the end of the row
     col = len(a[row_mid]) - 1

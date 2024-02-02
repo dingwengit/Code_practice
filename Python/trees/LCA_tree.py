@@ -1,5 +1,12 @@
 from tree import node
 
+'''
+           5 
+         /    \
+        -4    -3
+        / \   / \
+       8  20 2  11
+'''
 
 # problem of this method is to return one of the nodes if they are parent-child
 # relationship
@@ -34,5 +41,6 @@ def find_lca(root, n1, n2):
 root, n1, n2 = node().get_one_tree_2_children()
 lca = LCA(root, n1, n2)
 print(lca.val)
+root, n1, n2 = node().get_one_tree_2_children()
 n_found, node = find_lca(root, n1, n2)
 print("n_found: {}, lca: {}".format(n_found, node.val))

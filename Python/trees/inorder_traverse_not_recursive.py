@@ -5,11 +5,11 @@
         / \   / \
 (next) 8  20 2  11
 
-Impletement in-order tranverse of a tree without recursive
+Impletment in-order tranversal of a tree without recursive
 Stack:
 (5, False)
 (-3, False), (5, True), (-4, False), res: []
-(-3, False), (5, True), (20, False), (-4, True), res: []
+(-3, False), (5, True), (20, False), (-4, True), (8, False), res: []
 (-3, False), (5, True), (20, False), (-4, True), res: [8]
 """
 import tree
@@ -18,6 +18,8 @@ def inorder_traverse_stack(root):
     res = []
     stack = [(root, False)]
     while(stack):
+        print(stack)
+        print(res)
         node, processed = stack.pop()
         if not node:
             continue

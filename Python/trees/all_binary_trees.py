@@ -1,4 +1,4 @@
-# given an integer, generate all binary trees
+  # given an integer, generate all binary trees
 # e.g., n=3,
 # output:
 # 0          0              0          0        0
@@ -8,7 +8,6 @@
 #     0      0                         0    0
 from tree import node
 
-
 def get_binary_trees(num):
     if num == 0:
         return [None]
@@ -17,7 +16,7 @@ def get_binary_trees(num):
         right_n = num - 1 - left_n
         left_trees = get_binary_trees(left_n)
         right_trees = get_binary_trees(right_n)
-        cur_res += [node(data=0, left=left, right=right) for left in left_trees
+        cur_res += [node(data=left_n, left=left, right=right) for left in left_trees
                     for right in right_trees]
     return cur_res
 

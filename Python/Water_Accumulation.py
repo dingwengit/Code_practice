@@ -38,43 +38,52 @@
 # 6 --> [8,6,6,6,6,6,6,6,6] --> 1+1+1+1+1+4+4 = 13
 # 4 --> [8,6,6,6,6,6,6,6,6,4]
 
+'''
+Solution
+1. for i in range(len(res))
+1. if cur_h >= res[i] --> calculate the water amount and replace res[i] with
+2. break
+'''
 
-# check negative input
+
+def get_amount(h, res):
+    amt = 0
+    if h > res[0][0]:
+        new_h = res[0][0]
+        res[0] = (h, 1)
+        return amt
+    else:
+        new_h = h
+
+    found_idx = -1
+    new_cnt = 1 # note that this starts with 1
+    for idx in range (len(res)):
+        ht, cnt = res[idx]
+        if new_h >= ht:
+            amt += (new_h - ht) * cnt
+            new_cnt += cnt
+            if found_idx == -1:
+                found_idx = idx
+    if found_idx == -1:
+        res.append((new_h, 1))
+    else:
+        res[found_idx] = (new_h, new_cnt)
+        for _ in range(found_idx+1, len(res)):
+            res.pop()
+    return amt
+
 
 def water_accumalation(a):
     amt = 0
-    res = [] # (height, cnt)
-    for h in a:
-        print res
-        if len(res) > 0:
-            (l_h, l_cnt) = res[len(res)-1]
-            if h >= l_h:
-                (f_h, f_cnt) = res[0]
-                level = min(f_h, h)
-                for idx in range(len(res)-1, -1, -1):
-                    (idx_h, idx_cnt) = res[idx]
-                    if idx_h >= level:
-                        break
-                    amt += (level - idx_h) * idx_cnt
-                    res[idx] = (level, idx_cnt)
-                if h >= res[0][0]:
-                    res = []
-        if len(res) == 0:
-            res.append((h, 1))
-        else:
-            found = False
-            new_cnt = 1
-            for idx in range(len(res) - 1, -1, -1):
-                (idx_h, idx_cnt) = res[idx]
-                if h == idx_h:
-                    found = True
-                    new_cnt += idx_cnt
-                    if idx < len(res) - 1:
-                        del res[len(res) - 1]
-                    res[idx] = (idx_h, new_cnt)
-            if not found:
-                res.append((h,1))
+    if len(a) <= 1:
+        return amt
+    res = [(a[0], 1)] # (height, cnt)
+    for idx in range(1, len(a)):
+        h = a[idx]
+        amt += get_amount(h, res)
+        print(f"idx: {idx}, h:{h}, res: {res}")
     return amt
 
-a = [8,8,2,5,3,3,5,1,2,6,4]
-print water_accumalation(a)
+
+a = [9,8,9,10,2,5,3,3,5,1,2,6,4]
+print(water_accumalation(a))

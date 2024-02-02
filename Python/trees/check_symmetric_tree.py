@@ -10,7 +10,7 @@ both structual and values are the same in the sub-trees
             5
          /    \
         -4    -3
-        / \   / \
+        / \   /
        8  20 2
 (3) symmetric
             5
@@ -28,10 +28,9 @@ def check_symmetric_tree(node):
     def check_symmetric_subtrees(l_n, r_n):
         if not l_n and not r_n:
             return True
-        elif l_n and r_n:
-            if l_n.val == r_n.val:
-                return check_symmetric_subtrees(l_n.left, r_n.right) and \
-                       check_symmetric_subtrees(l_n.right, r_n.left)
+        elif l_n and r_n and l_n.val == r_n.val:
+            return check_symmetric_subtrees(l_n.left, r_n.right) and \
+                   check_symmetric_subtrees(l_n.right, r_n.left)
         return False
 
     return not node or check_symmetric_subtrees(node.left, node.right)

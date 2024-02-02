@@ -16,9 +16,9 @@ class node:
         def print_tree(root, tag):
             if root:
                 res.append("{}-{} ".format(tag, root.val))
-                print_tree(root.left, "{}-lc".format(root.val))
-                print_tree(root.right, "{}-rc".format(root.val))
-        print_tree(self, "rt")
+                print_tree(root.left, "{}-l".format(root.val))
+                print_tree(root.right, "{}-r".format(root.val))
+        print_tree(self, "r")
         return ''.join(res)
 
     def get_one_tree_with_parent(self):
@@ -49,7 +49,7 @@ class node:
         root.right = node(-3)
         root.right.left = node(2)
         root.right.right = node(11)
-        return root, root, root.right.left
+        return root, root.right.left, root.right.right
 
 
     def get_symmetric_tree(self):

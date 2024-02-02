@@ -40,6 +40,6 @@ def move_zeros_order(a):
 
 a = [1,0,5,2,0,0,3]
 b = [1,0,5,2,0,0,3]
-print move_zeros(a)
-print move_zeros_order(b)
+print(move_zeros(a))
+print(move_zeros_order(b))
 

@@ -3,62 +3,51 @@
 # find out all triplets that sums to 0, no duplicates
 # output = [(-1, 0, 1), (-2,0,2), (0,0,0)]
 # (1,0,-1) should not appear because of (-1, 0, 1)
+# save results into dict()
+# [{1:2, -2:1}, {0:3}, ...]
 #
 # the key point is that unique digits in the array matters, so use hashtable
 # to store the count
 #
 
-def get_dict_count(a, a_dict):
-    for item in a:
-        if item not in a_dict:
-            a_dict[item] = 1
-        else:
-            a_dict[item] += 1
-
-
-def find_tuple_sum(a_dict, next_sum, res_tuple):
-    for item in a_dict.keys():
-        if (next_sum - item) in a_dict:
-            if item == next_sum - item:
-                if a_dict[item] < 2:
-                    continue
-            elif a_dict[item] < 1 or a_dict[next_sum - item] < 1:
-                continue
-            res_tuple.append((item, next_sum - item))
-
-
-def compare_dict(dic, dic_triplet):
-    return not any(key not in dic_triplet or dic[key] != dic_triplet[key] for
-               key in dic)
-
-
-def check_triplet(triplet, res):
+def found_in_hash(tripple, res_hash):
     dic = dict()
-    get_dict_count(triplet, dic)
-    not_found = True
-    for item in res:
-        dic_triplet = dict()
-        get_dict_count(item, dic_triplet)
-        if compare_dict(dic, dic_triplet):
-            not_found = False
-            break
-    return not_found
+    for item in tripple:
+        if item in dic:
+            dic[item] += 1
+        else:
+            dic[item] = 0
+
+    for res in res_hash:
+        found_item = True
+        for key in dic.keys():
+            if key not in res:
+                found_item = False
+                break
+            if dic[key] != res[key]:
+                found_item = False
+                break
+        if found_item:
+            return True
+
+    res_hash.append(dic)
+    return False
 
 
-def find_triplets_sum(a, k):
-    a_dict = dict()
-    res = []
-    get_dict_count(a, a_dict)
-    for key in a_dict.keys():
-        next_sum = k - key
-        res_tuple = []
-        a_dict[key] -= 1
-        find_tuple_sum(a_dict, next_sum, res_tuple)
-        a_dict[key] += 1
-        for (a1, a2) in res_tuple:
-            triplet = (key, a1, a2)
-            if check_triplet(triplet, res):
-                res.append(triplet)
-    return res
+def get_tripples(a):
+    res = set()
+    for i in range(len(a)):
+        for j in range(i+1, len(a)):
+            for k in range(j+1, len(a)):
+                if a[i]+a[j]+a[k] == 0 and (a[i], a[j], a[k]) not in res:
+                    res.add((a[i], a[j], a[k]))
+    res_hash = []
+    for tripple in res:
+        if not found_in_hash(tripple, res_hash):
+            print(tripple)
 
-print(find_triplets_sum([-1, 2, 0, 0, -1, 2, -3, 0, -4, 1, 5, -2], 0))
+
+
+# print(find_triplets_sum([-1, 2, 0, 0, -1, 2, -3, 0, -4, 1, 5, -2], 0))
+a = [-1, 2, 0, 0, 1, -2, 0, 3]
+get_tripples(a)

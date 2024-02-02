@@ -20,15 +20,15 @@ def sentence_break(s, res):
             del res[len(res) -1]
 
 
-def sentence_break2(s, idx=0, res=[]):
-    if idx >= len(s):
+def sentence_break2(s, st=0, res=[]):
+    if st >= len(s):
         print(res)
         return
 
-    for i in range(idx+1, len(s)+1):
-        if s[idx:i] in dictionary:
-            res.append(s[idx:i])
-            sentence_break2(s, i, res)
+    for idx in range(st+1, len(s)+1):
+        if s[st:idx] in dictionary:
+            res.append(s[st:idx])
+            sentence_break2(s, idx, res)
             del res[len(res) -1]
 
 # sentence_break("onpinsandneedles",[])

@@ -1,5 +1,5 @@
 # for a NxN maze, find out how many different ways to start from (0,
-# 0) to exit (N-1, N-1)
+# 0) to exit (N-1, N-1) -- one can only go right or down?
 
 
 def get_ways_exit_maze(x, y):

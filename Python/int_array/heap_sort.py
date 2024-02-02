@@ -1,7 +1,7 @@
 """
            5
          /    \
-        -4    -3
+        -4    -3  <-- start from this level
         / \   / \
        8  20 2  11
 """
@@ -26,11 +26,12 @@ def heapify(a, root, l):
 
 
 def heap_sort(a):
+    # a[0] will be the biggest int after each iteration of heapifying the array
     for i in range(len(a)):
-        heapify(a, (len(a) - i) / 2, len(a) - i)
+        heapify(a, int((len(a) - i) / 2), len(a) - i)
         a[0], a[len(a) - i - 1] = a[len(a) - i - 1], a[0]
 
 
-a = [5, -4, -3, 8, 20, 2, 11]
+a = [5, -4, -3, 8, 20, 2, 11, 7, 9, 3, 12]
 heap_sort(a)
-print a
+print(a)

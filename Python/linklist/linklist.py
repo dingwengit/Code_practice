@@ -1,5 +1,5 @@
 
-class linklist():
+class linklist:
     def __init__(self, val):
         self.val, self.next = val, None
 

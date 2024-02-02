@@ -69,7 +69,7 @@ def get_max_profit(a, k):
 
 
 # option 3 -- based on option 2
-# p[i][t] -- max profit when buy / sell stock to day [i] with j trades
+# p[i][t] -- max profit when buy / sell stock to day [i] with t trades
 # max_p = max(p[i-1][t], max(a[i] - a[m] + p[m][t-1])) for m in [1, i-1]
 # then max(a[i] - a[m] + p[m][t-1]) = a[i] + max(p[m][t-1]- a[m]) for m in [1, i-1]
 # = a[i] + max(p[m][t-1]- a[m], p[i-1][t-1] - a[i-1]) for m in [1, i-2]

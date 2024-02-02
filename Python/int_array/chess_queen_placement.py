@@ -4,35 +4,53 @@ from array import *
 # give NxN square board, each row can place one queen, find out all possible
 #  placements of placing queens in all rows without attacking each other
 
+#  x o x x x
+#  x x x o x
+#  o x x x x
+#  x x o x x
 
-def check_placement(n, rows, row_idx, col):
-    if row_idx == 0:
-        return True
-    for i in range(row_idx): # check all rows before row_idx
-        r1, c1, r2, c2 = i, rows[i], row_idx, col
-        if c2 == c1 or abs(c2-c1) == abs(r2-r1):
+#  x o x x
+#  x x x o
+#  o x x x
+#  x x o x
+
+#  x x o x
+#  o x x x
+#  x x x o
+#  x o x x
+
+
+cnt = 0
+
+
+def validate_pos(board, n, row, col):
+    if any(board[row]):
+        return False
+    for r in range(row):
+        if board[r][col]:
+            return False
+    for i in range(1, n):
+        if row - i >=0 and col - i >=0 and board[row - i][col - i]:
+            return False
+        if row - i >=0 and col + i < n and board[row - i][col + i]:
             return False
     return True
 
 
-def place_queens(n, rows, row_idx):
-    if row_idx >= n:
-        for i in range(len(rows)):
-            row = ["x"] * n
-            row[rows[i]] = "O"
-            print(' '.join(row))
-            # print ("({}, {})".format(i+1, rows[i]+1))
-        print("=====")
+def find_diff_placement(board, n, row=0):
+    global cnt
+    if row >= n:
+        cnt += 1
         return
 
-    for i in range(n):
-        # check if we can place a queen in row_idx, col = i
-        rows[row_idx] = i
-        if check_placement(n, rows, row_idx, i):
-            place_queens(n, rows, row_idx + 1)
+    # place board in row idx
+    for col in range(n):
+        if validate_pos(board, n, row, col):
+            board[row][col] = True
+            find_diff_placement(board, n, row+1)
+            board[row][col] = False
 
-if __name__ == '__main__':
-    n = 5
-    rows = [0] * n # !!!! array index is row_idx where its value is column,
-    # so we don't need back-tracking
-    place_queens(n, rows, 0)
+n = 4
+board = [[False for i in range(n)] for j in range(n)]
+find_diff_placement(board, n)
+print(f"placement: {cnt}")

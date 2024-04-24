@@ -4,6 +4,10 @@
 In share trading, a buyer buys shares and sells on a future date. Given the stock price of n days, the trader is allowed to make at most k transactions, where a new transaction can only start after the previous transaction is complete, find out the maximum profit that a share trader could have made.
 Examples:
 
+         10, 22, 5, 75, 65, 80
+p[*][1]  0   12  12 70  70  75
+p[*][2]  0   12  12 82  82  87
+trades = [(10, 22)]
 
 Input:
 Price = [10, 22, 5, 75, 65, 80]
@@ -43,11 +47,9 @@ def find_max_profit(a, idx, k, res):
             find_max_profit(a, i+1, k, res)
             del res[len(res)-1]
 
-
 def print_max_profit(a, k):
     res = []
-    for i in range(0, len(a) - 1):
-        find_max_profit(a, i, k, res)
+    find_max_profit(a, 0, k, res)
     print(max_p)
 
 # option 2 -- dynamic programming
@@ -94,8 +96,8 @@ print(get_max_profit_linear(a, k))
 max_p = 0
 a = [10, 22, 5, 75, 65, 80]
 k = 2
-print(get_max_profit_linear(a, k))
-# print_max_profit(a, k)
+# print(get_max_profit_linear(a, k))
+print_max_profit(a, k)
 max_p = 0
 a = [100, 30, 15, 10, 8, 25, 80]
 k = 3

@@ -33,6 +33,7 @@ class LRU:
             self.tail.nt = node
             node.nt = None
             self.tail = node
+            return node.data
 
     def add(self, key, value):
         with self.lock:

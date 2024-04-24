@@ -1,9 +1,12 @@
+'''
 # given a string, find the longest substring which is palindrome
 # s = "abstcacta", return "tcact"
+(a)(b)(s)(t)(c)(a)(c)(t)(a)
+(ab)(bs)(st)(tc)...
+(abs)(bst)...
 #
-
+'''
 max_len = 0
-
 
 def find_longest_palindrome(s, st, end):
     substr = s[st:end]
@@ -65,9 +68,11 @@ def find_LPSub(s, st=0, res=[]):
 #             c[(i, j)] = False
 #
 # find_palindrome(s, 0, len(s)-1, c)
-s = "abstcactastcacts"
-s = "abcb"
+# s = "abstcactastcacts"
+# s = "abcb"
 find_LPSub(s)
 print("max len = {}".format(max_len))
 print("max_len: {}".format(find_longest_palindrome(s, 0, len(s))))
+
+
 

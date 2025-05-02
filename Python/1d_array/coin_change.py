@@ -17,7 +17,21 @@ def coin_change(a, idx, n, res):
             del res[len(res) - 1]  # back track
 
 
+def coin_change2(a, idx, n, res):
+    if n == 0:
+        print(res)
+        del res[len(res) - 1]
+        return
+    if n < 0 or idx >= len(a):
+        if res:
+            del res[len(res) - 1]
+        return
+
+    res.append(a[idx])
+    coin_change2(a, idx, n-a[idx], res)
+    coin_change2(a, idx+1, n, res)
+
 coins = [25, 10, 5, 1]
 n = 40
 res = []
-coin_change(coins, 0, n, res)
+coin_change2(coins, 0, n, res)

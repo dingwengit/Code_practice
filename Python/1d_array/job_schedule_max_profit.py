@@ -1,5 +1,5 @@
-# given array of schedules, consists of start-time and end-time, each job
-# has a profit, write a function to find out the max possible profit
+# given array of schedules of 24 hour period, consists of start-time and end-time, each job
+# has a pay, write a function to find out the max pay for this period
 
 # input: a=[(1,3,5), (2,4,3), (3,5,2), (2,5,4), (1,6,5), (2,7, 6), (6, 7, 2)]
 #

@@ -5,7 +5,31 @@
 # for example, the rod with length 8 below -- you can sell the rod with 4
 # len 1, 2 len 2 = 14; or sell the rod as a whole of len 8 = 11
 # len = array index + 1
-# price_list = [1, 5, 4, 6, 7, 9, 12, 11]
+# price_list = [(1, $1), (2, $4), (3, $4), (4, $6), (5, $7), (6, $9), (7, $12), (8, $11)]
+# cur_max       (1, 1), (2, 4), (3, 5), (4, 8), (5, 9)
+"""
+1: (1/1)
+2  (3/2)
+3  (3/2)
+4  (6/4)
+5  (6/4)
+6  (9/6)
+7  (12/7)
+8  (12/7)
+19  (12/7)
+
+
+len (1, $1) (2, $5)
+1  1
+2  5
+3  6
+4  10
+5  5
+6  6
+7  7
+8  8
+"""
+
 # input: len = 8
 # output: 8 of len 1 for $1, or 4 of len 2 for $20, or 1 of len 8 for $11
 
@@ -41,7 +65,6 @@ def find_max_price(price, idx, lengh, res):
             res.append(price[i])
             find_max_price(price, i, lengh - (i+1), res)
             del res[len(res) - 1]
-
 
 price_list = [1, 5, 4, 6, 7, 9, 12, 11]
 find_max_price(price_list, 0, 8, [])

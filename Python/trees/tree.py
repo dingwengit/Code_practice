@@ -73,12 +73,29 @@ def traverse(root):
     traverse(root.right)
 
 """
-           15
+           15                
          /    \
         11    23
         / \   / \
        8  12 22  25
 """
+"""
+new_root
+           15                
+         /    \
+        11    23
+        / \   / \
+       8  12 22  25
+"""
+'''
+     2, 3, 4, 5, 6
+prefix   = [1, 1*2, 1*2*3, 1*2*3*4, 1*2*3*4*5]
+suffix   = [1*6*5*4*3, 1*6*5*4, 1*6*5, 1*6, 1]
+
+([abc)[aaa]
+stack
+'''
+
 # root = node(15)
 # root.left = node(11)
 # root.left.left = node(8)
@@ -88,3 +105,11 @@ def traverse(root):
 # root.right.right = node(25)
 #
 # traverse(root)
+
+def reverse_tree(root):
+    if not root:
+        return
+    traverse(root.left)
+    traverse(root.right)
+
+    root.right, root.left = root.left, root.right

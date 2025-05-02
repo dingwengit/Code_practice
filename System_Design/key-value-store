@@ -1,0 +1,26 @@
+Design a distributed key-value store for the Cloud.
+
+Design a distributed key-value store system that efficiently manages a
+large volume of data across multiple nodes while ensuring high availability,
+fault tolerance, and low-latency access for read and write operations.
+The system should be capable of provide strong consistency guarantees,
+and allow for horizontal scalability to accommodate dynamic workloads and
+data growth.
+
+
+Functional requirements
+
+- User shoule be able to perform CRUD operations on Key:value
+- Should support a large volume of data
+- resilient, low-lat
+- Either HA or consistent]
+
+
+
+
+
+
+
+
+
+

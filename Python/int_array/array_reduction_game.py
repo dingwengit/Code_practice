@@ -17,23 +17,6 @@ An optimal method:
 2. Choose index 1 and 2, remove the 1st index, score = arr[1] ⊕ arr[2] = 3 ⊕ 1 = 2, arr = [1].
 Sum the results and return the total score, 3+2 = 5.
 
-arr = [2, 5, 3, 3, 4, 6]
-sum = 19
-
-s = 7 (3,4) with idx (2,4)
-s = 7 (3,4) with idx (3,4)
-s = 7 (2,5) with idx (0,1)
-s = 7 (3,6) with idx (2,5)
-s = 7 (3,6) with idx (3,5)
-s = 6 (2,4) with idx (0,4)
-s = 6 (5,3) with idx (1,2)
-s = 6 (5,3) with idx (1,3)
-s = 4 (2,6) with idx (0,5)
-s = 3 (5,6) with idx (1,5)
-s = 2 (4,6) with idx (4,5)
-s = 1 (2,3) with idx (0,2)
-s = 1 (2,3) with idx (0,3)
-s = 1 (5,4) with idx (1,4)
 '''
 max_xor_sum = 0
 max_xor_res = []
@@ -42,12 +25,10 @@ def generate_s_tripples(arr, s_tripples):
     for i in range(len(arr)):
         for j in range(i+1,len(arr)):
             val = arr[i] ^ arr[j]
-            ins_idx = len(s_tripples)
-            for idx, t in enumerate(s_tripples):
-                if val >= t[2]:
-                    ins_idx = idx
-                    break;
-            s_tripples.insert(ins_idx, (i, j, val))
+            s_tripples.append((i, j, val))
+    # sort the array based on index 2 of tripple
+    s_tripples.sort(reverse=True, key=lambda x: x[2])
+
 
 def find_max_xor(s_tripples, n, res, idx, red_idx_set):
     global max_xor_res, max_xor_sum
@@ -69,13 +50,14 @@ def find_max_xor(s_tripples, n, res, idx, red_idx_set):
         red_idx_set.remove(s_tripples[idx][0])
         # print(f"red_idx_set={red_idx_set}, res={res}, idx={idx}")
 
-        if len(res) < n - 1:
+        if len(res) < n - 1: # if this is the last pair, we don't need to choose which letter to drop
             red_idx_set.add(s_tripples[idx][1])
             find_max_xor(s_tripples, n, res, idx+1, red_idx_set)
             red_idx_set.remove(s_tripples[idx][1])
         del res[len(res)-1]
 
-arr = [2, 5, 3, 3, 4, 7]
+arr = [2, 5, 3, 3]
+# arr = [2, 3, 4, 7, 5, 3]
 # arr = [3, 2, 1]
 res = []
 s_tripples = []
@@ -83,4 +65,6 @@ generate_s_tripples(arr, s_tripples)
 print(s_tripples)
 find_max_xor(s_tripples, len(arr), res, 0, set())
 print(max_xor_sum)
+for i, v in enumerate(max_xor_res):
+    max_xor_res[i] = (arr[v[0]], arr[v[1]], v[2])
 print(max_xor_res)

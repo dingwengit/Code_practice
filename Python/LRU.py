@@ -6,7 +6,7 @@ class DoubleLinkList:
         self.key, self.pv, self.nt, self.data = key, pv, nt, value
 
 #
-# h <-> n1 <-> n2 <-> n3 <-> n4 <-> t
+# h <-> n1 <-> n2 <-> n3 <-> n4 <-> t <-> n
 #
 class LRU:
     def __init__(self, size):
@@ -26,9 +26,10 @@ class LRU:
                 return node.data
             if node == self.head:
                 self.head = node.nt
-            # append node to the tail
+            # remove node from ll
             node.nt.pv = node.pv
             node.pv.nt = node.nt
+            # append node to the tail
             node.pv = self.tail
             self.tail.nt = node
             node.nt = None
@@ -44,8 +45,10 @@ class LRU:
                 self.head = self.head.nt
                 self.size -= 1
             # add to the tail -- <- tail -> node
-            node = DoubleLinkList(key=key, pv = self.tail, value=value)
+            node = DoubleLinkList(key=key, value=value)
             self.hash[key] = node
+            node.pv = self.tail
+            node.nt = None
             self.tail.nt = node
             self.tail = node
             self.size += 1

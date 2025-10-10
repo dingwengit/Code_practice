@@ -16,41 +16,30 @@ output:
 
 import heapq
 
-class item_class:
-    def __init__(self, v, removed=False):
-        self.v, self.removed = (-1)*v, removed
-
+class item:
+    def __init__(self, v, idx):
+        self.v, self.idx = -1 * v, idx
     def __gt__(self, other):
         return self.v > other.v
 
-
 def max_in_sliding_window(a, k):
-    if len(a) < k or k <= 0:
-        return None
-
-    res, window, h = [], [], []
-
+    if k <= 1 or k > len(a):
+        return a
+    res, hp = [], []
     for i in range(k):
-        item = item_class(a[i])
-        window.append(item)
-        heapq.heappush(h, item)
-    res.append(h[0].v * (-1))
-    item = window.pop(0)
-    item.removed = True
-    idx = k
-    while idx < len(a):
-        item = item_class(a[idx])
-        window.append(item)
-        heapq.heappush(h, item)
-        # get the max value from heap
-        while h[0].removed:
-            heapq.heappop(h)
-        res.append(h[0].v * (-1))
-        item = window.pop(0)
-        item.removed = True
-        idx += 1
-
+        heapq.heappush(hp, item(a[i], i))
+    j = k
+    res.append(-1 * hp[0].v)
+    remove_idx = 0
+    while (j < len(a)):
+        heapq.heappush(hp, item(a[j], j))
+        x = hp[0]
+        while (x.idx <= remove_idx):
+            x = heapq.heappop(hp)
+        res.append(-1 * x.v)
+        j += 1
+        remove_idx += 1
     return res
 
-a = [2, -1, 8, 1, 6, 3, 5, 4]
+a = [8, -1, 2, 1, 6, 3, 5, 4]
 print(max_in_sliding_window(a, 3))

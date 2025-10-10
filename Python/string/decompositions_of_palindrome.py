@@ -14,7 +14,7 @@ def palindrome_decompsition(str, st, res):
         if prefix == prefix[::-1]: # palindrome
             res.append(prefix)
             palindrome_decompsition(str, idx, res)
-            del res[len(res) - 1]
+            del res[-1]
 
 str = "0204451881"
 res = []

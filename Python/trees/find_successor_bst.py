@@ -7,7 +7,7 @@
                    /
                   35
 
-find successor for a given Node, in BST tree or in-order tranverse path
+find successor for a given Node in BST tree or in-order tranverse path
 
 input = 15
 output = 32

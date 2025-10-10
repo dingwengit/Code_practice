@@ -1,4 +1,5 @@
-#problem : for input "character", the longest palindrome subsequence is "carac"
+# problem : for input "character",
+# the longest palindrome subsequence is "carac"
 
 def find_LPS3(s, i, j):
     if len(s) == 0:

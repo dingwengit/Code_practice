@@ -22,8 +22,8 @@ def find_max_path_sum(n):
     l_sum = find_max_path_sum(n.left)
     r_sum = find_max_path_sum(n.right)
     #l_sum or r_sum could be negative
-    l_max = max(l_sum + n.val, n.val)
-    r_max = max(r_sum + n.val, n.val)
+    l_max = max(l_sum + n.val, n.val) # max left side path
+    r_max = max(r_sum + n.val, n.val) # max right side path
     path_max = max(path_max, max(n.val, n.val + l_sum + r_sum), max(n.val+l_max, l_max), max(n.val + r_max, r_max))
 
     return max(l_max, r_max)

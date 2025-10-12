@@ -19,4 +19,5 @@ def get_sum_encoding_tree(root, path_sum=0):
            get_sum_encoding_tree(root.right, path_sum)
 
 root = tree.node().get_one_tree()
-print(get_sum_encoding_tree(root))
+tree.printTree(root)
+print(f"total_sum={get_sum_encoding_tree(root)}")

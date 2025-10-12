@@ -24,4 +24,5 @@ def find_root_leaf_sum(root, remain_path_sum):
 
 
 root, n1, n2 = tree.node().get_one_tree_2_children()
-print(find_root_leaf_sum(root, 22))
+tree.printTree(root)
+print(find_root_leaf_sum(root, 21))

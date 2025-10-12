@@ -6,17 +6,16 @@
 #   2          2          2   3      2        2
 #    \        /                       \      /
 #     3      3                         3    3
-from tree import node
+from tree import node, printTree
 
-def get_binary_trees(num):
-    if num == 0:
+def get_binary_trees(l, r):
+    if l >= r:
         return [None]
     cur_res = []
-    for left_n in range(num):
-        right_n = num - 1 - left_n
-        left_trees = get_binary_trees(left_n)
-        right_trees = get_binary_trees(right_n)
-        cur_res += [node(data=left_n, left=left, right=right) for left in left_trees
+    for idx in range(l, r):
+        left_trees = get_binary_trees(l, idx)
+        right_trees = get_binary_trees(idx+1, r)
+        cur_res += [node(data=idx, left=left, right=right) for left in left_trees
                     for right in right_trees]
     return cur_res
 
@@ -32,6 +31,10 @@ def get_bst(a):
                 for right in right_trees]
     return res
 
-print(get_binary_trees(3))
-a = [1,3,5]
-print(get_bst(a))
+res = get_binary_trees(0, 4)
+
+# a = [1,3,5]
+# res = get_bst(a)
+
+for t in res:
+    printTree(t)

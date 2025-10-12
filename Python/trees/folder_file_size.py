@@ -33,6 +33,6 @@ def get_all_sizes(fd):
 
 f1 = folder(files=[item("file1", 10), item("file1", 10)])
 f2 = folder(files=[item("file2", 3), item("file2", 3)])
-r = folder(files=[item("file2", 2), item("file2", 3)], sub_folders=[f1, f2])
+r = folder(files=[item("file3", 2), item("file3", 3)], sub_folders=[f1, f2])
 
 print(get_all_sizes(r))

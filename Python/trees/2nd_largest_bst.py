@@ -8,8 +8,8 @@
                 35
 Find the 2nd largest value in BST
 
-Solution: in-order tranverse will return ascent order, change in-order traverse
-by right-child -> parent -> left-child, it will return descent order
+Solution: in-order tranverse will return ascent order, then change "in-order traverse"
+by right-child -> parent -> left-child, it will return descent order, it is better
 """
 
 class tree:

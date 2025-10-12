@@ -7,10 +7,15 @@
 
 Impletment in-order tranversal of a tree without recursive
 Stack:
-(5, False)
+(5, False) -- (value, processed?)
 (-3, False), (5, True), (-4, False), res: []
 (-3, False), (5, True), (20, False), (-4, True), (8, False), res: []
-(-3, False), (5, True), (20, False), (-4, True), res: [8]
+(-3, False), (5, True), (20, False), (-4, True), res: [8] -- node 8 is a leaf node
+(-3, False), (5, True), (20, False), res: [8, -4]
+(-3, False), (5, True), res: [8, -4, 20]
+(-3, False), res: [8, -4, 20, 5]
+(11, False), (-3, True), (2, False) res: [8, -4, 20]
+...
 """
 import tree
 
@@ -34,28 +39,5 @@ def inorder_traverse_stack(root):
     return res
 
 
-def inorder_traverse_linear(root):
-    prev, cur = None, root
-    res = []
-    while(cur):
-        if cur.parent == prev:
-            if cur.left:
-                next = cur.left
-            else:
-                res.append(cur.val)
-                next = cur.right or cur.parent
-        elif prev == cur.left: # left tree is done
-            res.append(cur.val)
-            next = cur.right or cur.parent
-        else: # right tree is done
-            next = cur.parent
-        prev, cur = cur, next
-
-    return res
-
-
 root, n1, n2 = tree.node().get_one_tree_2_children()
 print(inorder_traverse_stack(root))
-
-root, n1, n2 = tree.node().get_one_tree_with_parent()
-print(inorder_traverse_linear(root))

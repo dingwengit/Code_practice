@@ -11,16 +11,6 @@ class node:
         self.parent, self.left, self.right, self.val = parent, left, right, \
                                                        data
 
-    def __repr__(self):
-        res = []
-        def print_tree(root, tag):
-            if root:
-                res.append("{}-{} ".format(tag, root.val))
-                print_tree(root.left, "{}-l".format(root.val))
-                print_tree(root.right, "{}-r".format(root.val))
-        print_tree(self, "r")
-        return ''.join(res)
-
     def get_one_tree_with_parent(self):
         root = node(data=5)
         root.left = node(data=-4, parent=root)
@@ -64,6 +54,43 @@ class node:
         root.left.left.left = node(30)
         return root
 
+def printTree(root):
+    res = []  # 0 - root, 1 - left, 2 - right
+    center = 40
+    gap = 6
+
+    def get_indent(n):
+        return "".join([" "] * n)
+
+    def print_tree(root):
+        res.append((root, 0, center))
+        prev_layer, layer, val_content, space_content, prev_indent = -1, 0, "", "", 0
+        while (len(res) > 0):
+            node, layer, indent = res.pop(0)
+            if layer > prev_layer:
+                val_content, space_content, prev_indent = "", "", 0
+                prev_layer = layer
+
+            # print(f"node={node.val}, layer={layer}, indent={indent}, prev_indent={prev_indent}")
+            if node.left:
+                res.append((node.left, layer+1, indent - 5))
+            if node.right:
+                res.append((node.right, layer+1, indent - 5 + gap))
+
+            val_content += get_indent(indent - prev_indent + 2) + f"{node.val}"
+            if node.left and node.right:
+                space_content += get_indent(indent - prev_indent - 2 if space_content != "" else indent - 2) + "/" + get_indent(gap) + "\\"
+            elif node.left:
+                space_content += get_indent(indent - prev_indent - 2 if space_content != "" else indent - 2) + "/"
+            elif node.right:
+                space_content +=get_indent(indent - prev_indent - 2 if space_content != "" else indent - 2) + get_indent(gap) + "\\"
+
+            if len(res) == 0 or res[0][1] > layer:
+                print(val_content)
+                print(space_content)
+            prev_indent = indent
+
+    print_tree(root)
 
 def traverse(root):
     if not root:
@@ -95,7 +122,7 @@ suffix   = [1*6*5*4*3, 1*6*5*4, 1*6*5, 1*6, 1]
 ([abc)[aaa]
 stack
 '''
-
+#
 # root = node(15)
 # root.left = node(11)
 # root.left.left = node(8)
@@ -103,6 +130,9 @@ stack
 # root.right = node(23)
 # root.right.left = node(22)
 # root.right.right = node(25)
+#
+# printTree(root)
+
 #
 # traverse(root)
 

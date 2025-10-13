@@ -7,6 +7,7 @@
 def get_longest_increasing_seq_count(a):
     idx_a = list(enumerate(a))
     counts = [0] * len(a)
+    # divide & conquer method
     def merge_sort(idx_a):
         if len(idx_a) <= 1:
             return idx_a

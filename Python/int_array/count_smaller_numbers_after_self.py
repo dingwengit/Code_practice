@@ -19,6 +19,7 @@ class Solution:
         self.merge_sort(indexed_nums)
         return self.counts
 
+    # divide & conquer method
     def merge_sort(self, indexed_nums):
         if len(indexed_nums) <= 1:
             return indexed_nums

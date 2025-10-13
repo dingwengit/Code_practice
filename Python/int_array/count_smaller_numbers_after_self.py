@@ -87,7 +87,7 @@ class Solution:
             merged.append(right_half[j])
             j += 1
 
-        print(f"left_half={left_half}, right_half={right_half}, merged={merged}, counts={self.counts}")
+        # print(f"left_half={left_half}, right_half={right_half}, merged={merged}, counts={self.counts}")
 
         return merged
 

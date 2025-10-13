@@ -5,35 +5,9 @@ the number of smaller elements to the right of num[i]
 input: [5,2,6,1,3]
 res:   [3,1,2,0,0]
 
-1. merge sort
+O(nlog(n))
 
-[(5,0),(2,1),(6,2),(1,3),(3,4)] --> (val, index)
-counts=[0,0,0,0,0]
-
-merging (5,0),(2,1) -> 5>2, counts[0] = 1 --> (2,1), (5,0)
-merging (6,2),(1,3) -> 6>1, counts[2] = 1 --> (1,3),(6,2)
-merging (3,4), (1000, 5) -> counts[5] = 1 --> (3,4), (1000,5)
-
-merging (2,1) (1,3) ->
-merging (5,0), (2,1) ->
-
-https://towardsdatascience.com/self-balancing-binary-search-trees-101-fc4f51199e1d
-
-AVL tree (from right to left of arr):
-              3 (1)
-            /
-           1 (0)
-insert: 6
-              3 (1)
-            /    \
-           1 (0)  6(2)
-
-insert: 2
-              3 (1)
-            /    \
-           1 (0)  6(2)
 '''
-
 
 class Solution:
     def __init__(self, nums):

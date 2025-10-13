@@ -9,7 +9,7 @@
 output: 7
 """
 
-from tree import node
+from tree import node, printTree
 
 
 def get_universal_trees(root):
@@ -26,4 +26,5 @@ def get_universal_trees(root):
 
 
 root = node().get_one_tree()
+printTree(root)
 print(get_universal_trees(root))

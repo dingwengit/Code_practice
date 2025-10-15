@@ -59,7 +59,7 @@ def find_max_xor(s_tripples, n, res, idx, removed_idx_set):
         removed_idx_set.add(s_tripples[idx][1]) # remove the 2nd idx of pair
         find_max_xor(s_tripples, n, res, idx+1, removed_idx_set) # go to next pair
         removed_idx_set.remove(s_tripples[idx][1]) # restore the 2nd idx of pair
-        del res[-1] # back tracking by removing the last added pair 
+        del res[-1] # back tracking by removing the last added pair from res
 
 # arr = [2, 5, 3, 3]
 # arr = [2, 3, 4, 7, 5, 3]

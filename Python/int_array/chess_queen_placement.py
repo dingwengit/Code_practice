@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from array import *
 
-# give NxN square board, each row can place one queen, find out all possible
+# give NxN square board, each row can place one queen, find out count of all possible
 #  placements of placing queens in all rows without attacking each other
 
 #  x o x x x
@@ -51,6 +51,6 @@ def find_diff_placement(board, n, row=0):
             board[row][col] = False
 
 n = 4
-board = [[False for i in range(n)] for j in range(n)]
+board = [[False] * n for _ in range(n)]
 find_diff_placement(board, n)
 print(f"placement: {cnt}")

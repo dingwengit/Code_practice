@@ -16,5 +16,5 @@ def fibonacci_2(n, a):
 
 n = 4
 a = [0] * (n+1)
-print fibonacci(n)
-print fibonacci_2(n, a)
+print(fibonacci(n))
+print(fibonacci_2(n, a))

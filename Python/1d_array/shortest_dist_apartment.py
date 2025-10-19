@@ -3,13 +3,13 @@
 # for example:
 """
 input_blocks = [
-{"gym":False, "grocery_store":True, "office":False}, # res [(F,0), (T,0),(F,0)] (T/F, index)
-{"gym":False, "grocery_store":True, "office":False}, # res [(F,0), (T,1),(F,0)]
-{"gym":False, "grocery_store":False, "office":False}, # res [(F,0), (T,1),(F,0)]
-{"gym":True, "grocery_store":False, "office":True},   # res [(T,3), (T,1),(T,3)] -> dist = 2
-{"gym":True, "grocery_store":False, "office":True},   # res [(T,4), (T,1),(T,4)]
-{"gym":False, "grocery_store":True, "office":True},   # res [(T,4), (T,5),(T,5)] -> dis = 1
-{"gym":True, "grocery_store":False, "office":False}    # res [(T,6), (T,5),(T,5)]
+{"gym":False, "grocery_store":True, "office":False}, # res [0,0,0] attributes [F,T,F]
+{"gym":False, "grocery_store":True, "office":False}, # res [0,1,0] attributes [F,T,F]
+{"gym":False, "grocery_store":False, "office":False}, # res [0,1,0] attributes [F,T,F]
+{"gym":True, "grocery_store":False, "office":True},   # res [3,1,3] attributes [T,T,T]-> dist = 2
+{"gym":True, "grocery_store":False, "office":True},   # res [4,1,4] attributes [T,T,T]
+{"gym":False, "grocery_store":True, "office":True},   # res [4,5,5] attributes [T,T,T]-> dis = 1
+{"gym":True, "grocery_store":False, "office":False}   # res [6,5,5] attributes [T,T,T]
 ]
 """
 import sys

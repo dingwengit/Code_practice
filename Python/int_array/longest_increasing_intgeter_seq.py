@@ -1,6 +1,6 @@
-# given an int array, e.g., 3, 5, 17, 4, 8, 12, 9, 10, find the longest
+# given an int array, e.g., 3, 5, 17, 4, 8, 12, 9, 10,
+# find the longest increasing sequence (3, 4, 8, 9, 10)
 # return count = 5
-# increasing sequence (3, 4, 8, 9, 10)
 
 # better solution:
 # merge sort has O(nlog(n)) complexity, same as "count_smaller_numbers_after_self.py"

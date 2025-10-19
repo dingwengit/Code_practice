@@ -1,28 +1,32 @@
 #!/usr/bin/env python
 
 '''
-In share trading, a buyer buys shares and sells on a future date. Given the stock price of n days, the trader is allowed to make at most k transactions, where a new transaction can only start after the previous transaction is complete, find out the maximum profit that a share trader could have made.
+In share trading, a buyer buys shares and sells on a future date.
+Given the stock price of n days, the trader is allowed to make at most k transactions,
+where a new transaction can only start after the previous transaction is complete,
+find out the maximum profit that a share trader could have made.
 Examples:
 
          10, 22, 5, 75, 65, 80
 p[*][1]  0   12  12 70  70  75
 p[*][2]  0   12  12 82  82  87
-trades = [(10, 22)]
+         i,  j
+case 1   i+1
+case 2   take trade
+case 3   i, j+1 (next tradable date)
 
 Input:
 Price = [10, 22, 5, 75, 65, 80]
     K = 2
 Output:  87
 Trader earns 87 as sum of 12 and 75
-Buy at price 10, sell at 22, buy at
-5 and sell at 80
+Buy at price 10, sell at 22, buy at 5 and sell at 80
 
 Input:
 Price = [100, 30, 15, 10, 8, 25, 80]
     K = 3
 Output:  72
-Only one transaction. Buy at price 8
-and sell at 80.
+Only one transaction. Buy at price 8 and sell at 80.
 
 Input:
 Price = [90, 80, 70, 60, 50]
@@ -31,26 +35,29 @@ Output:  0
 Not possible to earn.
 
 '''
+import heapq
 
 # option 1 -- backtrack
 # time complexity O(k * N^2), space: O(K)
-def find_max_profit(a, idx, k, res):
+def print_max_profit(a, k, i=0, j=1, res=[]):
     global max_p
-    if k <= len(res):
+    if i >= len(a) or j >= len(a):
+        max_p = max(max_p, sum(res) if len(res) <= k else get_res(res.copy(), k))
         return
+    if i >= j:
+        return
+    if a[j] > a[i]:
+        res += [a[j] - a[i]]
+        print_max_profit(a, k, j + 1, j + 2, res)
+        del res[-1]
+    print_max_profit(a, k, i, j+1, res)
+    print_max_profit(a, k, i+1, j, res)
 
-    for i in range(idx + 1, len(a)):
-        cur_p = a[i] - a[idx]
-        if cur_p > 0:
-            res.append((a[i], a[idx], cur_p))
-            max_p = max(max_p, sum(p for _,_,p in res))
-            find_max_profit(a, i+1, k, res)
-            del res[len(res)-1]
-
-def print_max_profit(a, k):
-    res = []
-    find_max_profit(a, 0, k, res)
-    print(max_p)
+def get_res(res, k):
+    heapq.heapify(res)
+    for _ in range(len(res)-k):
+        heapq.heappop(res)
+    return sum(res)
 
 # option 2 -- dynamic programming
 # p[i][j] -- max profit when buy / sell stock to day [i] with j trades
@@ -89,17 +96,20 @@ def get_max_profit_linear(a, k):
 
 
 max_p = 0
-a = [90, 80, 70, 60, 50]
+a = [90, 70, 62, 50, 25]
 k = 1
-print(get_max_profit_linear(a, k))
-# print_max_profit(a, k)
+# print(get_max_profit_linear(a, k))
+print_max_profit(a, k)
+print(max_p)
 max_p = 0
-a = [10, 22, 5, 75, 65, 80]
+a = [2, 5, 22, 75, 65, 76, 80]
 k = 2
 # print(get_max_profit_linear(a, k))
 print_max_profit(a, k)
+print(max_p)
 max_p = 0
 a = [100, 30, 15, 10, 8, 25, 80]
 k = 3
-print(get_max_profit_linear(a, k))
-# print_max_profit(a, k)
+# print(get_max_profit_linear(a, k))
+print_max_profit(a, k)
+print(max_p)

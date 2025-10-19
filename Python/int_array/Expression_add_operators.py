@@ -47,30 +47,44 @@ def evaluate_target(s, n):
             exp_s[idx] = op
             insert_operators(exp_s, idx + 2)
 
-    # calculate ["1", "*", "2", "-", "3", "*", "4"]
-    def get_number(s, idx):
-        if idx + 1 >= len(s):
-            return int(s[idx]), "end", idx+1
-        if s[idx+1] in ["+", "-"]:
-            return int(s[idx]), s[idx+1], idx+2
-        res = int(s[idx])
-        idx += 1
-        while idx < len(s) and s[idx] == "*":
-            res *= int(s[idx+1])
-            idx += 2
-        return res, s[idx] if idx < len(s) else "end", idx+1
+    # from ["1", "*", "2", "-", "3", "*", "4"]
+    # calculate all "*" first, and form into a new array [2,"-",12]
+    def get_number(s):
+        i, res = 0, []
+        # print(f"s={s}")
+        while(i < len(s)):
+            if i + 1 == len(s):
+                res.append(int(s[i]))
+                break;
+            if (s[i] in ["+", "-"]):
+                res.append(s[i])
+                i += 1
+                continue
+            if s[i+1] in ["+", "-"]:
+                res.append(int(s[i]))
+                res.append(s[i+1])
+                i += 2
+            elif s[i+1] == "*":
+                # print(f"s[i]={s[i]}, i={i}")
+                n = int(s[i])
+                while(i+1 < len(s) and s[i+1] == "*"):
+                    n *= int(s[i+2])
+                    i += 2
+                res.append(n)
+                i += 1
+        i, n = 0, res[0]
+        # print(f"res={res}")
+        while i + 1 < len(res):
+            if res[i+1] == "+":
+                n += res[i+2]
+            if res[i+1] == "-":
+                n -= res[i+2]
+            i += 2
+        return n
 
     def calculate_target(n):
         for item in results:
-            idx, res, prev_op = 0, 0, "+"
-            while idx < len(item):
-                num, op, new_idx = get_number(item, idx)
-                if prev_op == "+":
-                    res += num
-                else:
-                    res -= num
-                prev_op = op
-                idx = new_idx
+            res = get_number(item)
             if res == n:
                 print("".join(item))
                 return True
@@ -80,5 +94,5 @@ def evaluate_target(s, n):
     insert_operators(exp_s, 1)
     return calculate_target(n)
 
-a="1204"
-print(evaluate_target(a, 2))
+a="1214"
+print(evaluate_target(a, 9))

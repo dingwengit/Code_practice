@@ -3,6 +3,10 @@
 # Given unlimited boxes (l, w, h), each box can rotate
 # write a function to return max height of tacking boxes that bottom area of
 # the box must be decreasing
+#
+# method 1 - calculate the area of each box, and put the areas in to heap,
+# when pop, take the higher h if the area is the same
+#
 
 def find_max_height(boxes, res):
     global max_height

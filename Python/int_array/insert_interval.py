@@ -4,12 +4,6 @@ insert a new interval into the intervals,
 assume that the intervals were initially sorted acoording to  their start times
 
 Input: [[1,3],[6,9]], insert: [4,6]
-      ---
-            ---
-       ----
-idx   1 2 3 4 6 7 8 9
-st:0  1   0 4 4 4 4 0
-end:0 3   0 5 9 9 9 0
 output: [1,5], [6,9]
 
 Input: [[6,7],[8,9] [12,18]], insert: [2,8]

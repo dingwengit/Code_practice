@@ -18,6 +18,7 @@ class account:
             raise Exception(f"Invalid parameter - limit cannot be less than -1.")
         self.transfer_limit = limit
 
+
 class transaction:
     def __init__(self, account_id, type, amount:int, time=datetime.datetime.now()):
         self.account_id, self.type, self.amount, self.time = \
@@ -73,15 +74,18 @@ class banking:
             trans = transaction(accountFrom.id, "Widthdraw", amount)
             accountFrom.transaction_history.append(trans)
 
+# Tests
 acct1 = account(id="123", balance=100)
 acct2 = account(id="456", balance=200)
 banking1 = banking()
+
 # test transaction
 banking1.transfer(acct1, acct2, 50)
 banking1.deposit(acct1, 90)
 print(f"balance1={acct1.balance}, balance2={acct2.balance}")
 for trans in acct1.transaction_history:
     print(trans)
+    
 # test limit
 acct1.setWidthdrawLimit(limit=30)
 banking1.widthdraw(acct1, 90)

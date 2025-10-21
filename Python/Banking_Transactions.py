@@ -2,7 +2,7 @@ import threading
 import datetime
 
 class account:
-    def __init__(self, id, balance, widthdraw_limit=-1, transfer_limit=-1):
+    def __init__(self, id, balance:int, widthdraw_limit=-1, transfer_limit=-1):
         self.id, self.balance, self.widthdraw_limit, self.transfer_limit \
             = id, balance, widthdraw_limit, transfer_limit
         self.lock = threading.Lock()
@@ -85,7 +85,7 @@ banking1.deposit(acct1, 90)
 print(f"balance1={acct1.balance}, balance2={acct2.balance}")
 for trans in acct1.transaction_history:
     print(trans)
-    
+
 # test limit
 acct1.setWidthdrawLimit(limit=30)
 banking1.widthdraw(acct1, 90)

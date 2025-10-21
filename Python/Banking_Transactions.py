@@ -29,7 +29,7 @@ class transaction:
 
 class banking:
     def transfer(self, accountFrom:account, accountTo:account, amount:int):
-        # validation
+        # validations
         if amount <= 0:
             raise Exception("Invalid money amount, must be more than zero")
         if accountFrom.transfer_limit >= 0 and accountFrom.transfer_limit < amount:
@@ -48,7 +48,7 @@ class banking:
             accountFrom.transaction_history.append(trans2)
 
     def deposit(self, accountTo:account, amount:int):
-        # validation
+        # validations
         if amount <= 0:
             raise Exception("Invalid money amount, must be more than zero")
 
@@ -59,7 +59,7 @@ class banking:
             accountTo.transaction_history.append(trans)
     
     def widthdraw(self, accountFrom:account, amount:int):
-        # validation
+        # validations
         if amount <= 0:
             raise Exception("Invalid money amount, must be more than zero")
         if accountFrom.widthdraw_limit >= 0 and accountFrom.widthdraw_limit < amount:

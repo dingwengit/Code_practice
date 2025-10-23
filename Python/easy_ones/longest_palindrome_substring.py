@@ -3,5 +3,5 @@ given a string, find the longest substring which is palindrome
 input s = "abstcacta",
 output "tcact"
 
-Both non-recursive (while loop) and recursive methods
+try with 2 methods : non-recursive (while loop) & recursive functions
 '''

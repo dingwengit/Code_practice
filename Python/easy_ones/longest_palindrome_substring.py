@@ -1,6 +1,7 @@
 '''
-Given a string, find the longest palindrome which is a substring.
+given a string, find the longest substring which is palindrome
+input s = "abstcacta",
+output "tcact"
 
-Input: aabcbadae
-Output: abcba
+Both non-recursive (while loop) and recursive methods
 '''

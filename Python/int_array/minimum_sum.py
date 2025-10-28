@@ -1,5 +1,6 @@
 '''
-Given an array of integers nums, perform k operations to minimize the sum of the elements. Each operation consists of:
+Given an array of integers nums, perform k operations to
+minimize the sum of the elements. Each operation consists of:
 
     Removing an element from the array
     Dividing it by 2

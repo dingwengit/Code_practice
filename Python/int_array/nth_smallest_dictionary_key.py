@@ -1,8 +1,8 @@
 '''
-Complete a function that returns the smallest key(sorted in ascending order
+Complete a function that returns the smallest key (sorted in ascending order
 alphabetically) of the given input dictionary containing nth hgihest value
-dictionary: {'e': 1, 'b': 2, 'c': 100, 'd': 30, 'a': 30}, n : 2 (2nd highest
-value)
+dictionary: {'e': 1, 'b': 2, 'c': 100, 'd': 30, 'a': 30},
+n : 2 (2nd highest value)
 
 min_heap (size=n):
 n=2

@@ -1,7 +1,11 @@
 # given integer array a = [-1, 2, 0, 0, 1, 2, 0]
-#
+# sum=0                     1,-2, 0, 0,-1, -2, 0
+# sum of 2 elements equals  1 from [2, 0, 0, 1, 2, 0] -> [0, 1] -> [-1, 0, 1]
+#                             -2 from [1, 0, 0, 1, 2, 0] -> []
+#                                 0 from [-1, 2, 0, 1, 2, 0] -> [-1, 1] [0, 0] -> [0,-1,1] [0,0,0]
+#                                      -1 from [-1,2,0, 0, 2, 0] -> [-1, 0] -> [1,-1,0]
 # find out all triplets that sums to 0, no duplicates
-# output = [(-1, 0, 1), (-2,0,2), (0,0,0)]
+# output = [(-1, 0, 1), (0,0,0)]
 # (1,0,-1) should not appear because of (-1, 0, 1)
 # save results into dict()
 # [{1:2, -2:1}, {0:3}, ...]

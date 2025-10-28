@@ -1,5 +1,6 @@
 '''
-given an int array a = [2, 6, 3, 5, 4, 6, 3,9,8,7,8,9], find the longest consecutive sequence
+given an int array a = [2, 6, 3, 5, 4, 6, 3,9,8,7,8,9],
+find the longest consecutive sequence
 output = [6,7,8,9] // keep the same order in orignal array?
 
           [2, 6,  3, 5, 4, 6, 3,9,8,7,8,9]

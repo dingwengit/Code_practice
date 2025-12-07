@@ -4,34 +4,17 @@
 # Noted problem : in this method, n=10, "1,1,1,1,1,5" will be different than
 # "5,1,1,1,1,1", and "1,5,1,1,1,1", ....
 
-
-def coin_change(a, idx, n, res):
-    if n == 0:
+def get_coin_changes(coins, total, st=0, res=[]):
+    if total == 0:
         print(res)
         return
 
-    for i in range(len(a)):
-        if i >= idx and a[i] <= n:
-            res.append(a[i])
-            coin_change(coins, i, n - a[i], res)
-            del res[len(res) - 1]  # back track
-
-
-def coin_change2(a, idx, n, res):
-    if n == 0:
-        print(res)
-        del res[len(res) - 1]
-        return
-    if n < 0 or idx >= len(a):
-        if res:
-            del res[len(res) - 1]
-        return
-
-    res.append(a[idx])
-    coin_change2(a, idx, n-a[idx], res)
-    coin_change2(a, idx+1, n, res)
+    for idx in range(st, len(coins)):
+        if coins[idx] <= total:
+            res.append(coins[idx])
+            get_coin_changes(coins, total - coins[idx], idx, res)
+            del res[-1]
 
 coins = [25, 10, 5, 1]
 n = 40
-res = []
-coin_change2(coins, 0, n, res)
+get_coin_changes(coins, n)

@@ -5,7 +5,7 @@
 # for example, the rod with length 8 below -- you can sell the rod with 4
 # len 1, 2 len 2 = 14; or sell the rod as a whole of len 8 = 11
 # len = array index + 1
-# price_list = [(1, $1), (2, $4), (3, $4), (4, $6), (5, $7), (6, $9), (7, $12), (8, $11)]
+# price_list = [(1, 1), (2, 4), (3, 4), (4, 6), (5, 7), (6, 9), (7, 12), (8, 11)]
 # cur_max       (1, 1), (2, 4), (3, 5), (4, 8), (5, 9)
 """
 1: (1/1)
@@ -19,7 +19,7 @@
 19  (12/7)
 
 
-len (1, $1) (2, $5)
+len (1, 1) (2, 5)
 1  1
 2  5
 3  6
@@ -31,44 +31,26 @@ len (1, $1) (2, $5)
 """
 
 # input: len = 8
-# output: 8 of len 1 for $1, or 4 of len 2 for $20, or 1 of len 8 for $11
+# output: 8 of len 1 for 1, or 4 of len 2 for 20, or 1 of len 8 for 11
 
-max_price = 0
+def get_max_profit(l_p, l):
+    max_profit = 0
 
+    def rod_cutting(l_p, l, st=0, res=[]):
+        nonlocal max_profit
+        if l == 0:
+            profit = sum([item[1] for item in res])
+            # print(f"p={profit}, res={res}")
+            max_profit = max(max_profit, profit)
+            return
+        for idx in range(st, len(l_p)):
+            if l_p[idx][0] <= l:
+                res.append(l_p[idx])
+                rod_cutting(l_p, l - l_p[idx][0], idx, res)
+                del res[-1]
+    rod_cutting(l_p, l)
+    return max_profit
 
-def find_max_price3(p, l, idx=0, cur_len=0, res=[]):
-    global max_price
-    if cur_len == l:
-        print("max price {} from {}".format(sum(res), res))
-        max_price = max(max_price, sum(res))
-        return
-    if idx + 1 <= l and cur_len + idx + 1 <= l:
-        # take idx
-        res.append(p[idx])
-        cur_len += (idx + 1)
-        find_max_price3(p, l, idx, cur_len, res)
-        # skip idx, and take idx + 1
-        del res[len(res)-1]
-        cur_len -= (idx + 1)
-        find_max_price3(p, l, idx+1, cur_len, res)
-
-
-def find_max_price(price, idx, lengh, res):
-    global max_price
-    if lengh == 0:
-        print("max price {} from {}".format(sum(res), res))
-        max_price = max(max_price, sum(res))
-        return
-
-    for i in range(idx, len(price)):
-        if i+1 <= lengh:
-            res.append(price[i])
-            find_max_price(price, i, lengh - (i+1), res)
-            del res[len(res) - 1]
-
-price_list = [1, 5, 4, 6, 7, 9, 12, 11]
-find_max_price(price_list, 0, 8, [])
-print(max_price)
-max_price = 0
-find_max_price3(price_list, 8)
-print(max_price)
+l_p = [(1, 1), (2, 3), (3, 3), (4, 6), (5, 7), (6, 9), (7, 12), (8, 11)]
+l = 10
+print(get_max_profit(l_p, l))
